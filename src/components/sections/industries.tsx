@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { UtensilsCrossed, Stethoscope, ShoppingBag, Store, Building2, Truck } from "lucide-react";
+import { UtensilsCrossed, Stethoscope, ShoppingBag, Store, Building2, Truck, ArrowRight } from "lucide-react";
 import { Reveal, staggerContainer, staggerItem } from "@/components/shared/reveal";
 
 const industries = [
@@ -12,7 +11,6 @@ const industries = [
     description:
       "Integración POS, facturación por mesa, manejo de propinas y boletas masivas en horas pico.",
     keyword: "Facturación para restaurantes",
-    href: "#",
   },
   {
     icon: Stethoscope,
@@ -20,7 +18,6 @@ const industries = [
     description:
       "Notas de crédito por reembolsos, facturación por aseguradora y manejo de series múltiples.",
     keyword: "Facturación para clínicas",
-    href: "#",
   },
   {
     icon: ShoppingBag,
@@ -28,7 +25,6 @@ const industries = [
     description:
       "Boletas masivas, control de inventario en tiempo real y sincronización multi-sucursal.",
     keyword: "Facturación para minimarket",
-    href: "#",
   },
   {
     icon: Store,
@@ -36,7 +32,6 @@ const industries = [
     description:
       "Software POS integrado con facturación electrónica SUNAT. Emisión en 2 segundos.",
     keyword: "Software POS Perú",
-    href: "#",
   },
   {
     icon: Building2,
@@ -44,7 +39,6 @@ const industries = [
     description:
       "Multiempresa, reportes consolidados, API y SSO. Listo para grupos corporativos.",
     keyword: "Sistema CPE empresarial",
-    href: "#",
   },
   {
     icon: Truck,
@@ -52,23 +46,22 @@ const industries = [
     description:
       "Guías de remisión, control de transporte y facturación por ruta. Logística integrada.",
     keyword: "Guías de remisión Perú",
-    href: "#",
   },
 ];
 
 export function Industries() {
   return (
-    <section className="relative py-20 lg:py-28 bg-background">
-      <div className="container-page">
-        <Reveal className="text-center max-w-2xl mx-auto mb-14">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
-            Por industria
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-balance">
+    <section id="industrias" className="relative py-16 lg:py-24 bg-brand-gray">
+      <div className="absolute inset-0 bg-grid-dark opacity-40" aria-hidden="true" />
+
+      <div className="container-page relative">
+        <Reveal className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
+          <span className="eyebrow justify-center">Por industria</span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-balance mt-4">
             Soluciones diseñadas para{" "}
             <span className="text-gradient-orange">tu sector</span>
           </h2>
-          <p className="mt-4 text-base lg:text-lg text-foreground/60 leading-relaxed">
+          <p className="mt-4 text-base lg:text-lg text-foreground/65 leading-relaxed">
             BREICORP se adapta a las necesidades específicas de cada industria peruana.
             Configuración lista para tu rubro en minutos.
           </p>
@@ -79,30 +72,25 @@ export function Industries() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-black/8"
         >
           {industries.map((ind) => (
             <motion.div
               key={ind.title}
               variants={staggerItem}
-              className="group relative overflow-hidden p-6 rounded-2xl border border-black/8 bg-card hover:border-primary/30 hover:shadow-premium hover:-translate-y-1 transition-all duration-300"
+              className="group relative p-6 lg:p-8 border-r border-b border-black/8 bg-background hover:bg-brand-ink hover:text-white transition-colors duration-300"
             >
-              <div className="absolute -top-12 -right-12 size-32 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors" />
-              <div className="relative">
-                <div className="inline-flex items-center justify-center size-11 rounded-xl bg-primary/10 text-primary mb-5 group-hover:bg-primary group-hover:text-white transition-colors">
-                  <ind.icon className="size-5" />
-                </div>
-                <h3 className="font-display text-lg font-bold mb-2">{ind.title}</h3>
-                <p className="text-sm text-foreground/60 leading-relaxed mb-4">
-                  {ind.description}
-                </p>
-                <Link
-                  href={ind.href}
-                  className="text-xs font-semibold text-primary inline-flex items-center gap-1 hover:gap-1.5 transition-all"
-                >
-                  {ind.keyword} →
-                </Link>
+              <div className="inline-flex items-center justify-center size-11 rounded-lg bg-brand-orange/10 text-brand-orange mb-5 group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                <ind.icon className="size-5" strokeWidth={1.75} />
               </div>
+              <h3 className="font-display text-lg font-bold mb-2">{ind.title}</h3>
+              <p className="text-sm text-foreground/60 group-hover:text-white/60 leading-relaxed mb-4">
+                {ind.description}
+              </p>
+              <span className="text-xs font-semibold text-brand-orange inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
+                {ind.keyword}
+                <ArrowRight className="size-3.5" />
+              </span>
             </motion.div>
           ))}
         </motion.div>

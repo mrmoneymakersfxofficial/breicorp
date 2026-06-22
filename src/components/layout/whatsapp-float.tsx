@@ -1,9 +1,8 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
-import { MessageCircle, X } from "lucide-react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { X } from "lucide-react";
 import { whatsappLink } from "@/lib/data/site-content";
 import { cn } from "@/lib/utils";
 
@@ -13,90 +12,94 @@ export function WhatsAppFloat() {
   const reduceMotion = useReducedMotion();
 
   React.useEffect(() => {
-    const t = setTimeout(() => setShow(true), 1200);
+    const t = setTimeout(() => setShow(true), 1500);
     return () => clearTimeout(t);
   }, []);
 
   return (
     <div
       className={cn(
-        "fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3 transition-all duration-500",
+        "fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 flex flex-col items-end gap-2.5 transition-all duration-500",
         show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       )}
     >
-      {open && (
-        <motion.div
-          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 10, scale: 0.95 }}
-          className="w-[300px] max-w-[calc(100vw-2.5rem)] rounded-2xl bg-background border border-black/10 shadow-premium overflow-hidden"
-        >
-          <div className="bg-[#075E54] text-white p-4 flex items-start gap-3">
-            <div className="size-10 rounded-full bg-white/15 flex items-center justify-center shrink-0">
-              <MessageCircle className="size-5" />
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="w-[280px] sm:w-[300px] max-w-[calc(100vw-2rem)] rounded-xl bg-background border border-black/10 shadow-float overflow-hidden"
+          >
+            <div className="bg-[#075E54] text-white p-3.5 flex items-start gap-3">
+              <div className="size-9 rounded-full bg-white/15 flex items-center justify-center shrink-0">
+                <WhatsAppIcon className="size-4.5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold text-sm">BREICORP · Soporte</p>
+                <p className="text-[11px] text-white/80 flex items-center gap-1.5">
+                  <span className="inline-block size-1.5 rounded-full bg-green-400 animate-pulse" />
+                  En línea ahora
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Cerrar"
+                className="text-white/80 hover:text-white p-1"
+              >
+                <X className="size-4" />
+              </button>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-semibold text-sm">BREICORP · Soporte</p>
-              <p className="text-xs text-white/80 flex items-center gap-1.5">
-                <span className="inline-block size-1.5 rounded-full bg-green-400 animate-pulse" />
-                En línea ahora
-              </p>
+            <div className="p-3.5 bg-brand-gray">
+              <div className="bg-white rounded-lg rounded-tl-none p-2.5 shadow-sm text-[13px] text-foreground/90 mb-2 leading-relaxed">
+                ¡Hola! 👋 Soy parte del equipo BREICORP. ¿En qué podemos ayudarte con tu facturación electrónica?
+              </div>
+              <a
+                href={whatsappLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center bg-[#25D366] hover:bg-[#1ebd58] text-white font-semibold py-2.5 rounded-lg text-sm transition-colors"
+              >
+                Abrir conversación
+              </a>
             </div>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label="Cerrar"
-              className="text-white/80 hover:text-white"
-            >
-              <X className="size-4" />
-            </button>
-          </div>
-          <div className="p-4 bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><circle cx=%221%22 cy=%221%22 r=%221%22 fill=%22%23e0e0e0%22/></svg>')]">
-            <div className="bg-white rounded-xl rounded-tl-none p-3 shadow-sm text-sm text-foreground/90 mb-2">
-              ¡Hola! 👋 Soy parte del equipo BREICORP. ¿En qué podemos ayudarte con tu facturación electrónica?
-            </div>
-            <a
-              href={whatsappLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-center bg-[#25D366] hover:bg-[#1ebd58] text-white font-semibold py-2.5 rounded-xl text-sm transition-colors"
-            >
-              Abrir conversación
-            </a>
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label="Contactar por WhatsApp"
         className={cn(
-          "group relative inline-flex items-center justify-center size-14 rounded-full bg-[#25D366] hover:bg-[#1ebd58] text-white shadow-[0_12px_36px_-8px_rgba(37,211,102,0.6)] transition-all",
-          !reduceMotion && "hover:scale-105"
+          "inline-flex items-center justify-center size-12 sm:size-14 rounded-full bg-[#25D366] hover:bg-[#1ebd58] text-white shadow-[0_10px_30px_-6px_rgba(37,211,102,0.55)] transition-all",
+          !reduceMotion && "hover:scale-105 active:scale-95"
         )}
       >
         {!open && (
           <span
-            className="absolute inset-0 rounded-full bg-[#25D366] opacity-60 animate-ping"
+            className="absolute inset-0 rounded-full bg-[#25D366] opacity-50 animate-ping"
             aria-hidden="true"
           />
         )}
         <span className="relative">
           {open ? (
-            <X className="size-6" />
+            <X className="size-5 sm:size-6" />
           ) : (
-            <svg
-              viewBox="0 0 24 24"
-              className="size-7"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.967-.94 1.165-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
+            <WhatsAppIcon className="size-6 sm:size-7" />
           )}
         </span>
       </button>
     </div>
+  );
+}
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.967-.94 1.165-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
   );
 }

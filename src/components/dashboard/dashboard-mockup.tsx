@@ -21,28 +21,30 @@ const linePath =
 
 export function DashboardMockup() {
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden bg-brand-ink text-white border border-white/10 shadow-[0_40px_120px_-20px_rgba(255,104,1,0.35),0_24px_60px_-12px_rgba(0,0,0,0.6)]">
+    <div className="relative w-full overflow-hidden bg-brand-ink text-white border border-white/10 shadow-[0_40px_120px_-20px_rgba(255,104,1,0.35),0_24px_60px_-12px_rgba(0,0,0,0.6)]">
       {/* Top bar */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/8 bg-white/[0.02]">
+      <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 border-b border-white/8 bg-white/[0.02]">
         <div className="flex items-center gap-2">
           <div className="size-2 rounded-full bg-[#ff5f57]" />
           <div className="size-2 rounded-full bg-[#febc2e]" />
           <div className="size-2 rounded-full bg-[#28c840]" />
-          <span className="ml-3 text-[11px] text-white/40 font-mono">app.breicorp.com/dashboard</span>
+          <span className="ml-2 sm:ml-3 text-[10px] sm:text-[11px] text-white/40 font-mono hidden sm:inline">
+            app.breicorp.com/dashboard
+          </span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Search className="size-3.5 text-white/40" />
           <Bell className="size-3.5 text-white/40" />
-          <div className="size-6 rounded-full bg-gradient-to-br from-primary to-orange-400 ring-2 ring-white/10" />
+          <div className="size-6 rounded-full bg-gradient-to-br from-brand-orange to-orange-400 ring-2 ring-white/10" />
         </div>
       </div>
 
       {/* Body */}
       <div className="grid grid-cols-12">
-        {/* Sidebar */}
+        {/* Sidebar — hidden on mobile */}
         <aside className="hidden md:flex col-span-2 flex-col gap-1 p-3 border-r border-white/8 bg-white/[0.01]">
           <div className="flex items-center gap-2 mb-3 px-2">
-            <div className="size-6 rounded-lg bg-primary flex items-center justify-center text-[10px] font-bold">B</div>
+            <div className="size-6 rounded-md bg-brand-orange flex items-center justify-center text-[10px] font-bold">B</div>
             <span className="text-[11px] font-semibold">BREICORP</span>
           </div>
           {[
@@ -53,59 +55,59 @@ export function DashboardMockup() {
           ].map((item) => (
             <div
               key={item.label}
-              className={`flex items-center gap-2 px-2 py-1.5 rounded-md text-[10px] ${
-                item.active ? "bg-primary/15 text-primary" : "text-white/55 hover:bg-white/5"
+              className={`flex items-center gap-2 px-2 py-1.5 text-[10px] ${
+                item.active ? "bg-brand-orange/15 text-brand-orange" : "text-white/55 hover:bg-white/5"
               }`}
             >
-              <item.icon className="size-3" />
+              <item.icon className="size-3" strokeWidth={1.75} />
               {item.label}
             </div>
           ))}
         </aside>
 
         {/* Main content */}
-        <div className="col-span-12 md:col-span-10 p-4 sm:p-5 space-y-4 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(255,104,1,0.10),transparent_70%)]">
+        <div className="col-span-12 md:col-span-10 p-3 sm:p-4 lg:p-5 space-y-3 sm:space-y-4 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(255,104,1,0.10),transparent_70%)]">
           {/* Header row */}
-          <div className="flex items-start justify-between gap-3 flex-wrap">
+          <div className="flex items-start justify-between gap-2 sm:gap-3 flex-wrap">
             <div>
-              <div className="flex items-center gap-2 text-[10px] text-white/40 mb-1">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] text-white/40 mb-1">
                 <span>Resumen general</span>
                 <ChevronDown className="size-3" />
               </div>
-              <h3 className="text-base sm:text-lg font-semibold">Facturación · Diciembre 2025</h3>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold">Facturación · Diciembre 2025</h3>
             </div>
-            <div className="flex items-center gap-1.5">
-              <button className="text-[10px] px-2 py-1 rounded-md bg-white/5 text-white/60">7d</button>
-              <button className="text-[10px] px-2 py-1 rounded-md bg-primary text-white">30d</button>
-              <button className="text-[10px] px-2 py-1 rounded-md bg-white/5 text-white/60">12m</button>
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <button className="text-[10px] px-2 py-1 bg-white/5 text-white/60">7d</button>
+              <button className="text-[10px] px-2 py-1 bg-brand-orange text-white">30d</button>
+              <button className="text-[10px] px-2 py-1 bg-white/5 text-white/60">12m</button>
             </div>
           </div>
 
-          {/* KPI cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
+          {/* KPI cards — 2x2 on mobile, 4 cols on desktop */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-2.5">
             <KpiCard
-              icon={<Receipt className="size-3.5" />}
+              icon={<Receipt className="size-3.5" strokeWidth={1.75} />}
               label="Comprobantes"
               value="12,458"
               trend="+12.4%"
               trendUp
             />
             <KpiCard
-              icon={<TrendingUp className="size-3.5" />}
+              icon={<TrendingUp className="size-3.5" strokeWidth={1.75} />}
               label="Ventas totales"
               value="S/ 2.45M"
               trend="+8.1%"
               trendUp
             />
             <KpiCard
-              icon={<FileCheck2 className="size-3.5" />}
+              icon={<FileCheck2 className="size-3.5" strokeWidth={1.75} />}
               label="Aceptado SUNAT"
               value="99.6%"
               trend="+0.3%"
               trendUp
             />
             <KpiCard
-              icon={<Users className="size-3.5" />}
+              icon={<Users className="size-3.5" strokeWidth={1.75} />}
               label="Clientes activos"
               value="1,284"
               trend="-1.2%"
@@ -116,15 +118,15 @@ export function DashboardMockup() {
           {/* Chart row */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2.5">
             {/* Bar chart */}
-            <div className="lg:col-span-2 rounded-xl bg-white/[0.03] border border-white/8 p-3.5">
+            <div className="lg:col-span-2 bg-white/[0.03] border border-white/8 p-3 sm:p-3.5">
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <p className="text-[10px] text-white/40">Emisión mensual</p>
+                  <p className="text-[10px] text-white/40 uppercase tracking-[0.15em]">Emisión mensual</p>
                   <p className="text-sm font-semibold">Comprobantes / mes</p>
                 </div>
                 <MoreHorizontal className="size-3.5 text-white/30" />
               </div>
-              <div className="flex items-end justify-between gap-1.5 h-20">
+              <div className="flex items-end justify-between gap-1 sm:gap-1.5 h-16 sm:h-20">
                 {bars.map((h, i) => (
                   <motion.div
                     key={i}
@@ -132,9 +134,7 @@ export function DashboardMockup() {
                     whileInView={{ height: `${h}%` }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 + i * 0.05, duration: 0.6, ease: "easeOut" }}
-                    className={`flex-1 rounded-t-sm ${
-                      i === bars.length - 1 ? "bg-primary" : "bg-primary/30"
-                    }`}
+                    className={`flex-1 ${i === bars.length - 1 ? "bg-brand-orange" : "bg-brand-orange/30"}`}
                   />
                 ))}
               </div>
@@ -143,15 +143,15 @@ export function DashboardMockup() {
               </div>
             </div>
 
-            {/* Line chart / donut */}
-            <div className="rounded-xl bg-white/[0.03] border border-white/8 p-3.5">
+            {/* Line chart */}
+            <div className="bg-white/[0.03] border border-white/8 p-3 sm:p-3.5">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-semibold">Ingresos</p>
                 <span className="text-[10px] text-green-400 flex items-center gap-0.5">
                   <ArrowUpRight className="size-3" /> 18%
                 </span>
               </div>
-              <div className="relative h-20">
+              <div className="relative h-16 sm:h-20">
                 <svg viewBox="0 0 240 100" className="w-full h-full" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="area-grad" x1="0" y1="0" x2="0" y2="1">
@@ -191,17 +191,17 @@ export function DashboardMockup() {
                 </div>
                 <div>
                   <p className="text-[8px] text-white/40">Mes</p>
-                  <p className="text-[10px] font-semibold text-primary">S/2.4M</p>
+                  <p className="text-[10px] font-semibold text-brand-orange">S/2.4M</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Recent transactions */}
-          <div className="rounded-xl bg-white/[0.03] border border-white/8 p-3.5">
+          {/* Recent transactions — hide on small mobile */}
+          <div className="hidden sm:block bg-white/[0.03] border border-white/8 p-3.5">
             <div className="flex items-center justify-between mb-2">
               <p className="text-sm font-semibold">Comprobantes recientes</p>
-              <span className="text-[10px] text-primary cursor-pointer">Ver todo</span>
+              <span className="text-[10px] text-brand-orange cursor-pointer">Ver todo</span>
             </div>
             <div className="space-y-1.5">
               {[
@@ -211,7 +211,7 @@ export function DashboardMockup() {
               ].map((row) => (
                 <div
                   key={row.serie}
-                  className="grid grid-cols-12 items-center gap-2 text-[11px] py-1.5 hover:bg-white/[0.03] rounded-md px-1.5"
+                  className="grid grid-cols-12 items-center gap-2 text-[11px] py-1.5 hover:bg-white/[0.03] px-1.5"
                 >
                   <div className="col-span-3 font-mono text-white/70">{row.serie}</div>
                   <div className="col-span-5 text-white/55 truncate">{row.client}</div>
@@ -243,9 +243,9 @@ function KpiCard({
   trendUp?: boolean;
 }) {
   return (
-    <div className="rounded-xl bg-white/[0.03] border border-white/8 p-3 hover:bg-white/[0.05] transition-colors">
+    <div className="bg-white/[0.03] border border-white/8 p-2.5 sm:p-3 hover:bg-white/[0.05] transition-colors">
       <div className="flex items-center justify-between mb-1.5">
-        <div className="size-6 rounded-md bg-primary/15 text-primary flex items-center justify-center">
+        <div className="size-6 bg-brand-orange/15 text-brand-orange flex items-center justify-center">
           {icon}
         </div>
         <span

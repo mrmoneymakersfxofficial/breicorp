@@ -1,16 +1,9 @@
-import { SiteShell } from "@/components/layout/site-shell";
+import { AppShell } from "@/components/layout/app-shell";
 import { Hero } from "@/components/sections/hero";
 import { TrustBar } from "@/components/sections/trust-bar";
 import { Benefits } from "@/components/sections/benefits";
 import { Modules } from "@/components/sections/modules";
 import { DashboardPreview } from "@/components/sections/dashboard-preview";
-import { HowItWorks } from "@/components/sections/how-it-works";
-import { Pricing } from "@/components/sections/pricing";
-import { Industries } from "@/components/sections/industries";
-import { Testimonials } from "@/components/sections/testimonials";
-import { About } from "@/components/sections/about";
-import { Faq } from "@/components/sections/faq";
-import { FinalCta } from "@/components/sections/final-cta";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -70,41 +63,12 @@ const jsonLd = {
       publisher: { "@id": "https://breicorp.com/#organization" },
       inLanguage: "es-PE",
     },
-    {
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "¿BREICORP está homologado por SUNAT?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Sí. BREICORP opera como proveedor de servicios electrónicos (PSE) cumpliendo la normativa vigente de SUNAT. Todos los comprobantes se envían en formato UBL 2.1 y la firma digital se realiza con certificado de SOL.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "¿Cuánto demora la implementación?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "El plan Emprendedor está operativo en menos de 10 minutos. Los planes Premium y Enterprise incluyen acompañamiento de un gerente de cuenta y migración asistida en 5 a 7 días hábiles.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "¿Tienen API para integrar con mi sistema?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Sí. BREICORP cuenta con una API REST documentada con OpenAPI 3.0, SDKs oficiales para JavaScript, Python, PHP y Java, y webhooks en tiempo real.",
-          },
-        },
-      ],
-    },
   ],
 };
 
 export default function HomePage() {
   return (
-    <SiteShell>
+    <AppShell>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -114,13 +78,6 @@ export default function HomePage() {
       <Benefits />
       <Modules />
       <DashboardPreview />
-      <HowItWorks />
-      <Pricing />
-      <Industries />
-      <Testimonials />
-      <About />
-      <Faq />
-      <FinalCta />
-    </SiteShell>
+    </AppShell>
   );
 }

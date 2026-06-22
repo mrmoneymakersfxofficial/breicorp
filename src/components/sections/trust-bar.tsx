@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 
-// Simplified "logo" wordmarks representing client industries
 const logos = [
   "Inversiones Andinas",
   "Grupo Restaurantero Lima",
@@ -14,21 +13,21 @@ const logos = [
 
 export function TrustBar() {
   return (
-    <section className="relative bg-background border-b border-black/5 py-10">
+    <section className="relative bg-background border-b border-black/8 py-8 sm:py-10">
       <div className="container-page">
-        <p className="text-center text-xs font-medium uppercase tracking-wider text-foreground/40 mb-7">
+        <p className="text-center text-[11px] font-medium uppercase tracking-[0.18em] text-foreground/40 mb-6 sm:mb-7">
           Más de 2,400 empresas en Perú confían en BREICORP
         </p>
         <div className="relative overflow-hidden mask-fade-x">
           <motion.div
-            className="flex items-center gap-12 whitespace-nowrap"
+            className="flex items-center gap-10 sm:gap-12 whitespace-nowrap"
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
           >
             {[...logos, ...logos].map((name, i) => (
               <span
                 key={i}
-                className="font-display text-lg font-bold text-foreground/30 hover:text-foreground/60 transition-colors cursor-default"
+                className="font-display text-base sm:text-lg font-bold text-foreground/30 hover:text-foreground/60 transition-colors cursor-default"
               >
                 {name}
               </span>
@@ -36,24 +35,6 @@ export function TrustBar() {
           </motion.div>
         </div>
       </div>
-      <style jsx>{`
-        .mask-fade-x {
-          -webkit-mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 8%,
-            black 92%,
-            transparent
-          );
-          mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 8%,
-            black 92%,
-            transparent
-          );
-        }
-      `}</style>
     </section>
   );
 }

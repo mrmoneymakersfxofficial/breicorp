@@ -37,44 +37,37 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="relative py-20 lg:py-28 bg-background">
+    <section id="como-funciona" className="relative py-16 lg:py-24 bg-background">
       <div className="container-page">
-        <Reveal className="text-center max-w-2xl mx-auto mb-14">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
-            Cómo funciona
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-balance">
+        <Reveal className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
+          <span className="eyebrow justify-center">Cómo funciona</span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-balance mt-4">
             De cero a facturar en{" "}
             <span className="text-gradient-orange">menos de 10 minutos</span>
           </h2>
-          <p className="mt-4 text-base lg:text-lg text-foreground/60 leading-relaxed">
+          <p className="mt-4 text-base lg:text-lg text-foreground/65 leading-relaxed">
             Sin instalaciones complejas, sin personal técnico. BREICORP está diseñado
             para que cualquier persona de tu equipo pueda operarlo desde el día uno.
           </p>
         </Reveal>
 
+        {/* Horizontal steps with connecting line — no cards */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5"
+          className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-black/8"
         >
-          {/* Connecting line */}
-          <div
-            className="hidden lg:block absolute top-12 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
-            aria-hidden="true"
-          />
-
-          {steps.map((s) => (
+          {steps.map((s, i) => (
             <motion.div
               key={s.step}
               variants={staggerItem}
-              className="relative p-6 rounded-2xl bg-card border border-black/8 hover:shadow-premium hover:-translate-y-1 transition-all duration-300"
+              className={`relative pt-8 pb-8 px-6 lg:px-8 border-b border-black/8 sm:border-b-0 ${i < steps.length - 1 ? "sm:border-r border-black/8" : ""} ${i % 2 === 0 ? "sm:border-r" : ""} lg:border-b-0`}
             >
               <div className="flex items-center justify-between mb-5">
-                <div className="inline-flex items-center justify-center size-12 rounded-xl bg-primary text-white shadow-glow-orange">
-                  <s.icon className="size-5" />
+                <div className="inline-flex items-center justify-center size-11 rounded-lg bg-brand-orange text-white shadow-glow-orange">
+                  <s.icon className="size-5" strokeWidth={1.75} />
                 </div>
                 <span className="font-display text-3xl font-extrabold text-foreground/10">
                   {s.step}
