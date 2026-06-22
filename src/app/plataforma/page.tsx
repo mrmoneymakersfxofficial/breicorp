@@ -3,6 +3,7 @@ import { HowItWorks } from "@/components/sections/how-it-works";
 import { Pricing } from "@/components/sections/pricing";
 import { Industries } from "@/components/sections/industries";
 import { Integrations } from "@/components/sections/integrations";
+import { SectionBlend } from "@/components/shared/section-blend";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -21,10 +22,18 @@ export const metadata: Metadata = {
 export default function PlataformaPage() {
   return (
     <AppShell>
-      <HowItWorks />
-      <Pricing />
-      <Industries />
-      <Integrations />
+      <SectionBlend to="white">
+        <HowItWorks />
+      </SectionBlend>
+      <SectionBlend from="white" to="gray">
+        <Pricing />
+      </SectionBlend>
+      <SectionBlend from="gray" to="gray">
+        <Industries />
+      </SectionBlend>
+      <SectionBlend from="gray" to="white">
+        <Integrations />
+      </SectionBlend>
     </AppShell>
   );
 }

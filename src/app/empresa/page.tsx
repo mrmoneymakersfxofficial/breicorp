@@ -3,6 +3,7 @@ import { About } from "@/components/sections/about";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Faq } from "@/components/sections/faq";
 import { FinalCta } from "@/components/sections/final-cta";
+import { SectionBlend } from "@/components/shared/section-blend";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -56,10 +57,18 @@ export default function EmpresaPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <About />
-      <Testimonials />
-      <Faq />
-      <FinalCta />
+      <SectionBlend to="gray">
+        <About />
+      </SectionBlend>
+      <SectionBlend from="gray" to="white">
+        <Testimonials />
+      </SectionBlend>
+      <SectionBlend from="white" to="gray">
+        <Faq />
+      </SectionBlend>
+      <SectionBlend from="gray" to="gray">
+        <FinalCta />
+      </SectionBlend>
     </AppShell>
   );
 }

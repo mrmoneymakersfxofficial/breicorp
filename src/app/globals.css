@@ -226,6 +226,110 @@
   .eyebrow {
     @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-orange;
   }
+
+  /* ===== PREMIUM SECTION TRANSITIONS (cinematic blended separators) ===== */
+
+  /* Soft fade-out at the top of a section — blends into whatever is above */
+  .blend-top {
+    position: relative;
+  }
+  .blend-top::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      var(--blend-from, transparent) 0%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  }
+
+  /* Soft fade-in at the bottom of a section — blends into whatever is below */
+  .blend-bottom {
+    position: relative;
+  }
+  .blend-bottom::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      to top,
+      var(--blend-to, transparent) 0%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+  }
+
+  /* Full atmospheric blend wrapper — adds top + bottom fade */
+  .blend-both {
+    position: relative;
+  }
+  .blend-both::before,
+  .blend-both::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 140px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .blend-both::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--blend-from, transparent) 0%, transparent 100%);
+  }
+  .blend-both::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--blend-to, transparent) 0%, transparent 100%);
+  }
+
+  /* Ambient orange glow diffusion for dark → light transitions */
+  .glow-diffusion {
+    position: relative;
+  }
+  .glow-diffusion::before {
+    content: "";
+    position: absolute;
+    inset: -20% 0 auto 0;
+    height: 220px;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(
+      60% 100% at 50% 100%,
+      rgba(255, 104, 1, 0.12) 0%,
+      rgba(255, 104, 1, 0.04) 40%,
+      transparent 70%
+    );
+    filter: blur(20px);
+  }
+
+  /* Subtle background noise texture for depth */
+  .bg-noise {
+    position: relative;
+  }
+  .bg-noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Dark theme variant of noise (lighter noise) */
+  .dark .bg-noise::after {
+    opacity: 0.04;
+  }
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }

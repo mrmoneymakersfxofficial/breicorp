@@ -3,6 +3,7 @@ import { Inter, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({
@@ -65,10 +66,10 @@ export const metadata: Metadata = {
     siteName: "BREICORP",
     images: [
       {
-        url: "/brand/logo.png",
-        width: 639,
-        height: 646,
-        alt: "BREICORP",
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "BREICORP — Facturación Electrónica Empresarial",
       },
     ],
     locale: "es_PE",
@@ -79,7 +80,7 @@ export const metadata: Metadata = {
     title: "BREICORP — Facturación Electrónica Empresarial SUNAT Perú",
     description:
       "Plataforma SaaS de facturación electrónica empresarial. Cumplimiento SUNAT, automatización y control en tiempo real.",
-    images: ["/brand/logo.png"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -110,9 +111,16 @@ export default function RootLayout({
           "font-sans antialiased bg-background text-foreground"
         )}
       >
-        {children}
-        <Toaster />
-        <SonnerToaster position="top-right" />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+          <SonnerToaster position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
   );

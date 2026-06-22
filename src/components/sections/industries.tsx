@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { UtensilsCrossed, Stethoscope, ShoppingBag, Store, Building2, Truck, ArrowRight } from "lucide-react";
 import { Reveal, staggerContainer, staggerItem } from "@/components/shared/reveal";
@@ -11,6 +12,7 @@ const industries = [
     description:
       "Integración POS, facturación por mesa, manejo de propinas y boletas masivas en horas pico.",
     keyword: "Facturación para restaurantes",
+    href: "/facturacion-para-restaurantes",
   },
   {
     icon: Stethoscope,
@@ -18,6 +20,7 @@ const industries = [
     description:
       "Notas de crédito por reembolsos, facturación por aseguradora y manejo de series múltiples.",
     keyword: "Facturación para clínicas",
+    href: "/facturacion-para-clinicas",
   },
   {
     icon: ShoppingBag,
@@ -25,6 +28,7 @@ const industries = [
     description:
       "Boletas masivas, control de inventario en tiempo real y sincronización multi-sucursal.",
     keyword: "Facturación para minimarket",
+    href: "/facturacion-para-minimarket",
   },
   {
     icon: Store,
@@ -32,6 +36,7 @@ const industries = [
     description:
       "Software POS integrado con facturación electrónica SUNAT. Emisión en 2 segundos.",
     keyword: "Software POS Perú",
+    href: "/software-pos-peru",
   },
   {
     icon: Building2,
@@ -39,6 +44,7 @@ const industries = [
     description:
       "Multiempresa, reportes consolidados, API y SSO. Listo para grupos corporativos.",
     keyword: "Sistema CPE empresarial",
+    href: "/plataforma#/industrias",
   },
   {
     icon: Truck,
@@ -46,6 +52,7 @@ const industries = [
     description:
       "Guías de remisión, control de transporte y facturación por ruta. Logística integrada.",
     keyword: "Guías de remisión Perú",
+    href: "/plataforma#/industrias",
   },
 ];
 
@@ -78,19 +85,23 @@ export function Industries() {
             <motion.div
               key={ind.title}
               variants={staggerItem}
-              className="group relative p-6 lg:p-8 border-r border-b border-black/8 bg-background hover:bg-brand-ink hover:text-white transition-colors duration-300"
             >
-              <div className="inline-flex items-center justify-center size-11 rounded-lg bg-brand-orange/10 text-brand-orange mb-5 group-hover:bg-brand-orange group-hover:text-white transition-colors">
-                <ind.icon className="size-5" strokeWidth={1.75} />
-              </div>
-              <h3 className="font-display text-lg font-bold mb-2">{ind.title}</h3>
-              <p className="text-sm text-foreground/60 group-hover:text-white/60 leading-relaxed mb-4">
-                {ind.description}
-              </p>
-              <span className="text-xs font-semibold text-brand-orange inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
-                {ind.keyword}
-                <ArrowRight className="size-3.5" />
-              </span>
+              <Link
+                href={ind.href}
+                className="group block p-6 lg:p-8 border-r border-b border-black/8 bg-background hover:bg-brand-ink hover:text-white transition-colors duration-300 h-full"
+              >
+                <div className="inline-flex items-center justify-center size-11 rounded-lg bg-brand-orange/10 text-brand-orange mb-5 group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                  <ind.icon className="size-5" strokeWidth={1.75} />
+                </div>
+                <h3 className="font-display text-lg font-bold mb-2">{ind.title}</h3>
+                <p className="text-sm text-foreground/60 group-hover:text-white/60 leading-relaxed mb-4">
+                  {ind.description}
+                </p>
+                <span className="text-xs font-semibold text-brand-orange inline-flex items-center gap-1 group-hover:gap-1.5 transition-all">
+                  {ind.keyword}
+                  <ArrowRight className="size-3.5" />
+                </span>
+              </Link>
             </motion.div>
           ))}
         </motion.div>

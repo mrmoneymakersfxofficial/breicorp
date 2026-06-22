@@ -2,28 +2,46 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ArrowRight, MessageCircle } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { Menu, X, ChevronDown, ArrowRight, MessageCircle, Sun, Moon } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { whatsappLink } from "@/lib/data/site-content";
 import { navGroups, useNav } from "@/lib/nav-config";
 
+type NavState = "top" | "floating" | "hidden";
+
 export function Navbar() {
-  const [scrolled, setScrolled] = React.useState(false);
+  const [navState, setNavState] = React.useState<NavState>("top");
   const [open, setOpen] = React.useState(false);
   const [openGroup, setOpenGroup] = React.useState<string | null>(null);
   const { activeId, activePage, scrollTo, goToPage } = useNav();
-  const router = useRouter();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+  const { scrollY, scrollYProgress } = useScroll();
+  const lastScroll = React.useRef(0);
 
-  React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  React.useEffect(() => setMounted(true), []);
+
+  // Scroll-aware dynamic behavior
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const prev = lastScroll.current;
+    lastScroll.current = latest;
+
+    if (latest < 40) {
+      setNavState("top");
+      return;
+    }
+    // Scrolling down → hide (after threshold)
+    if (latest > prev && latest > 280 && !open) {
+      setNavState("hidden");
+    } else {
+      // Scrolling up → show floating
+      setNavState("floating");
+    }
+  });
 
   React.useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -42,21 +60,40 @@ export function Navbar() {
     }
   };
 
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+
   return (
-    <header
+    <motion.header
+      initial={false}
+      animate={{
+        y: navState === "hidden" ? "-110%" : 0,
+      }}
+      transition={{ duration: 0.32, ease: [0.21, 0.5, 0.27, 0.99] }}
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        scrolled ? "py-2" : "py-3"
+        navState === "top" ? "py-3" : "py-2"
       )}
     >
       <div className="container-page">
-        <div
-          className={cn(
-            "flex items-center justify-between gap-4 rounded-none px-4 sm:px-5 py-2.5 transition-all duration-300",
-            scrolled
-              ? "glass border-b border-black/8 shadow-[0_1px_0_rgba(10,10,10,0.04)]"
-              : "glass border-b border-black/8"
-          )}
+        <motion.div
+          initial={false}
+          animate={{
+            backgroundColor:
+              navState === "top"
+                ? "rgba(255,255,255,0.6)"
+                : "rgba(255,255,255,0.85)",
+            borderColor:
+              navState === "top"
+                ? "rgba(10,10,10,0.06)"
+                : "rgba(10,10,10,0.10)",
+            boxShadow:
+              navState === "floating"
+                ? "0 8px 32px -8px rgba(10,10,10,0.10)"
+                : "0 0 0 0 transparent",
+          }}
+          transition={{ duration: 0.3 }}
+          className="flex items-center justify-between gap-4 px-4 sm:px-5 py-2.5 border-b backdrop-blur-xl"
+          style={{ WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
         >
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0" aria-label="BREICORP inicio">
@@ -86,7 +123,11 @@ export function Navbar() {
                   >
                     {group.label}
                     {isActiveGroup && (
-                      <span className="ml-1 size-1 rounded-full bg-brand-orange" />
+                      <motion.span
+                        layoutId="nav-active-dot"
+                        className="ml-1 size-1.5 rounded-full bg-brand-orange"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
                     )}
                     <ChevronDown className="size-3.5 opacity-50" />
                   </button>
@@ -94,13 +135,13 @@ export function Navbar() {
                   <AnimatePresence>
                     {openGroup === group.page && (
                       <motion.div
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 8 }}
+                        initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 8, scale: 0.98 }}
                         transition={{ duration: 0.18 }}
-                        className="absolute top-full left-0 mt-1 w-64 bg-background border border-black/8 shadow-premium rounded-lg p-2"
+                        className="absolute top-full left-0 mt-1 w-64 bg-background border border-black/8 shadow-[0_24px_60px_-12px_rgba(10,10,10,0.18)] rounded-lg p-2 overflow-hidden"
                       >
-                        <p className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-foreground/40">
+                        <p className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground/40">
                           {group.label}
                         </p>
                         {group.sections.map((s) => (
@@ -111,7 +152,7 @@ export function Navbar() {
                             className={cn(
                               "flex items-center justify-between w-full px-3 py-2 text-sm text-left rounded-md transition-colors",
                               activeId === s.id && activePage === s.page
-                                ? "bg-brand-orange/8 text-brand-orange"
+                                ? "bg-brand-orange/10 text-brand-orange"
                                 : "text-foreground/70 hover:bg-black/[0.04] hover:text-foreground"
                             )}
                           >
@@ -128,7 +169,23 @@ export function Navbar() {
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {/* Theme toggle */}
+            {mounted && (
+              <button
+                type="button"
+                onClick={toggleTheme}
+                aria-label="Cambiar tema"
+                className="inline-flex items-center justify-center size-9 rounded-md text-foreground/60 hover:text-foreground hover:bg-black/[0.04] transition-colors"
+              >
+                {theme === "dark" ? (
+                  <Sun className="size-4" />
+                ) : (
+                  <Moon className="size-4" />
+                )}
+              </button>
+            )}
+
             <Button
               asChild
               variant="ghost"
@@ -161,8 +218,14 @@ export function Navbar() {
               <Menu className="size-5" />
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
+
+      {/* Scroll progress bar (top of navbar) */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-0.5 bg-brand-orange origin-left z-[60]"
+        style={{ scaleX: scrollYProgress }}
+      />
 
       {/* Mobile drawer — full screen, premium */}
       <AnimatePresence>
@@ -209,7 +272,7 @@ export function Navbar() {
                           className={cn(
                             "flex items-center justify-between w-full px-3 py-3 text-base font-medium text-left rounded-md transition-colors",
                             isActive
-                              ? "bg-brand-orange/8 text-brand-orange"
+                              ? "bg-brand-orange/10 text-brand-orange"
                               : "text-foreground/80 hover:bg-black/[0.04]"
                           )}
                         >
@@ -253,6 +316,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

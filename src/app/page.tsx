@@ -4,6 +4,7 @@ import { TrustBar } from "@/components/sections/trust-bar";
 import { Benefits } from "@/components/sections/benefits";
 import { Modules } from "@/components/sections/modules";
 import { DashboardPreview } from "@/components/sections/dashboard-preview";
+import { SectionBlend } from "@/components/shared/section-blend";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -73,11 +74,30 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Hero />
-      <TrustBar />
-      <Benefits />
-      <Modules />
-      <DashboardPreview />
+      {/* Hero — dark section, fades into white TrustBar */}
+      <SectionBlend to="white" glow>
+        <Hero />
+      </SectionBlend>
+
+      {/* TrustBar — white, fades into gray Modules */}
+      <SectionBlend from="white" to="gray">
+        <TrustBar />
+      </SectionBlend>
+
+      {/* Benefits — gray, fades into gray (soft) */}
+      <SectionBlend from="gray" to="gray">
+        <Benefits />
+      </SectionBlend>
+
+      {/* Modules — gray, fades into dark DashboardPreview with glow */}
+      <SectionBlend from="gray" to="ink" glow>
+        <Modules />
+      </SectionBlend>
+
+      {/* DashboardPreview — dark, fades into white (next page) */}
+      <SectionBlend from="ink" to="white" glow>
+        <DashboardPreview />
+      </SectionBlend>
     </AppShell>
   );
 }
