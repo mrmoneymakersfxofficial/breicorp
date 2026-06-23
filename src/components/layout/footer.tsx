@@ -29,7 +29,7 @@ const footerNav = {
 
 export function Footer() {
   return (
-    <footer className="relative mt-auto bg-brand-ink text-white overflow-hidden">
+    <footer className="relative mt-auto bg-brand-ink text-white overflow-hidden blend-from-gray">
       {/* Top accent */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 size-96 bg-primary/20 rounded-full blur-3xl pointer-events-none" />

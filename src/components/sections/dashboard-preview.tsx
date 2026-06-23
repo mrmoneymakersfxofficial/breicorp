@@ -32,7 +32,7 @@ export function DashboardPreview() {
   const { scrollTo } = useNav();
 
   return (
-    <section id="dashboard" className="relative py-16 lg:py-24 bg-brand-ink text-white overflow-hidden">
+    <section id="dashboard" className="relative py-16 lg:py-24 bg-brand-ink text-white overflow-hidden blend-from-gray blend-to-light">
       <div className="absolute inset-0 bg-grid opacity-30" aria-hidden="true" />
       <div className="absolute top-1/2 -left-32 -translate-y-1/2 size-[500px] rounded-full bg-brand-orange/15 blur-[120px]" aria-hidden="true" />
 

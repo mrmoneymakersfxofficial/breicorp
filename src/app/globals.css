@@ -228,8 +228,99 @@
   }
 
   /* ===== PREMIUM SECTION TRANSITIONS (cinematic blended separators) ===== */
+  /* Ultra-smooth 0.2cm (~8px visual) difuminado on each side */
 
-  /* Soft fade-out at the top of a section — blends into whatever is above */
+  /* Section that comes AFTER a dark section — fades from dark at top to transparent */
+  .blend-from-dark::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(to bottom, var(--brand-ink) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+  }
+
+  /* Section that comes AFTER a light/gray section — fades from light at top to transparent */
+  .blend-from-light::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(to bottom, var(--background) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+  }
+
+  /* Section that comes AFTER a gray section — fades from gray at top to transparent */
+  .blend-from-gray::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(to bottom, var(--brand-gray) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+  }
+
+  /* Section that goes INTO a dark section — fades to dark at bottom */
+  .blend-to-dark::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(to top, var(--brand-ink) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+    mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+  }
+
+  /* Section that goes INTO a light section — fades to light at bottom */
+  .blend-to-light::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(to top, var(--background) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+    mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+  }
+
+  /* Section that goes INTO a gray section — fades to gray at bottom */
+  .blend-to-gray::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(to top, var(--brand-gray) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+    mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+  }
+
+  /* Legacy blend classes (kept for compatibility) */
   .blend-top {
     position: relative;
   }

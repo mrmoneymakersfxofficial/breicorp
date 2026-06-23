@@ -17,7 +17,7 @@ const integrations = [
 
 export function Integrations() {
   return (
-    <section id="integraciones" className="relative py-16 lg:py-24 bg-background">
+    <section id="integraciones" className="relative py-16 lg:py-24 bg-background overflow-hidden blend-from-gray">
       <div className="container-page">
         <Reveal className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
           <span className="eyebrow justify-center">Integraciones</span>
