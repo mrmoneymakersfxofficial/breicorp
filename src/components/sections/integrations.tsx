@@ -36,16 +36,18 @@ export function Integrations() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 border-t border-l border-black/8"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5"
         >
           {integrations.map((int) => (
             <motion.div
               key={int.name}
               variants={staggerItem}
-              className="group p-6 lg:p-7 border-r border-b border-black/8 hover:bg-brand-gray/50 transition-colors"
+              className="group p-6 lg:p-7 rounded-2xl border border-black/8 dark:border-white/8 bg-card text-center hover:shadow-premium hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="inline-flex items-center justify-center size-10 bg-brand-orange/10 text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors mb-4">
-                <int.icon className="size-5" strokeWidth={1.75} />
+              <div className="flex items-center justify-center mb-4">
+                <div className="inline-flex items-center justify-center size-12 rounded-xl bg-brand-orange/10 text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                  <int.icon className="size-5" strokeWidth={1.75} />
+                </div>
               </div>
               <h3 className="font-display text-sm font-bold mb-1">{int.name}</h3>
               <p className="text-xs text-foreground/55 leading-relaxed">{int.description}</p>

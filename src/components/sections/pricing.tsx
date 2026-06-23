@@ -20,7 +20,7 @@ export function Pricing() {
       <div className="absolute top-40 left-1/2 -translate-x-1/2 size-[600px] rounded-full bg-brand-orange/5 blur-3xl pointer-events-none" />
 
       <div className="container-page relative">
-        {/* Header — exact copy from client reference */}
+        {/* Header */}
         <Reveal className="text-center max-w-3xl mx-auto">
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-balance">
             Planes <span className="text-gradient-orange">BREICORP</span>
@@ -67,7 +67,7 @@ export function Pricing() {
           </div>
         </Reveal>
 
-        {/* Plans grid */}
+        {/* Plans grid — aligned with flex for perfect button alignment */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -81,9 +81,9 @@ export function Pricing() {
                 key={plan.id}
                 variants={staggerItem}
                 className={cn(
-                  "relative flex flex-col p-6 lg:p-7 transition-all duration-300 border",
+                  "relative flex flex-col p-6 lg:p-7 transition-all duration-300 border h-full",
                   plan.highlighted
-                    ? "bg-brand-ink text-white border-brand-orange shadow-glow-orange lg:-translate-y-2"
+                    ? "bg-brand-ink text-white border-brand-orange shadow-glow-orange"
                     : "bg-background border-black/8 dark:border-white/8 hover:border-black/15 dark:hover:border-white/15 hover:shadow-premium"
                 )}
               >
@@ -96,6 +96,7 @@ export function Pricing() {
                   </div>
                 )}
 
+                {/* Icon */}
                 <div
                   className={cn(
                     "inline-flex items-center justify-center size-11 mb-4",
@@ -107,18 +108,19 @@ export function Pricing() {
                   <plan.icon className="size-5" strokeWidth={1.75} />
                 </div>
 
+                {/* Name + description */}
                 <h3 className="font-display text-lg font-bold mb-1">{plan.name}</h3>
                 <p
                   className={cn(
-                    "text-xs leading-relaxed mb-5",
+                    "text-xs leading-relaxed mb-5 min-h-[2.5rem]",
                     plan.highlighted ? "text-white/60" : "text-foreground/55"
                   )}
                 >
                   {plan.description}
                 </p>
 
-                {/* Price */}
-                <div className="mb-5">
+                {/* Price — fixed height for alignment */}
+                <div className="mb-5 min-h-[4.5rem]">
                   {cycle === "monthly" ? (
                     <div className="flex items-baseline gap-1">
                       <span className="text-sm font-semibold opacity-60">S/</span>
@@ -147,10 +149,11 @@ export function Pricing() {
                   )}
                 </div>
 
+                {/* CTA button — consistent height */}
                 <Button
                   asChild
                   className={cn(
-                    "w-full justify-center mb-6 h-11",
+                    "w-full justify-center h-11 mb-6 shrink-0",
                     plan.highlighted
                       ? "bg-brand-orange hover:bg-brand-orange/90 text-white"
                       : "bg-brand-ink hover:bg-brand-ink/90 text-white dark:bg-brand-orange dark:hover:bg-brand-orange/90"
@@ -162,27 +165,19 @@ export function Pricing() {
                   </a>
                 </Button>
 
-                {/* Features list with Lucide icon on the RIGHT (matching client reference) */}
+                {/* Features list */}
                 <ul className="space-y-2.5 flex-1">
                   {plan.features.map((feature, idx) => {
                     const FeatureIcon = plan.featureIcons?.[idx];
                     return (
-                      <li
-                        key={feature}
-                        className="flex items-center gap-2.5 text-sm"
-                      >
-                        {/* Left: orange checkmark */}
+                      <li key={feature} className="flex items-center gap-2.5 text-sm">
                         <span
                           className={cn(
-                            "inline-flex items-center justify-center size-4 shrink-0 rounded-full",
-                            plan.highlighted
-                              ? "bg-brand-orange text-white"
-                              : "bg-brand-orange text-white"
+                            "inline-flex items-center justify-center size-4 shrink-0 rounded-full bg-brand-orange text-white"
                           )}
                         >
                           <Check className="size-2.5" strokeWidth={4} />
                         </span>
-                        {/* Center: feature text */}
                         <span
                           className={cn(
                             "flex-1 leading-snug",
@@ -191,7 +186,6 @@ export function Pricing() {
                         >
                           {feature}
                         </span>
-                        {/* Right: Lucide line-style icon representing the feature */}
                         {FeatureIcon && (
                           <FeatureIcon
                             className={cn(

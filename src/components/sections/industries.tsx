@@ -44,7 +44,7 @@ const industries = [
     description:
       "Multiempresa, reportes consolidados, API y SSO. Listo para grupos corporativos.",
     keyword: "Sistema CPE empresarial",
-    href: "/plataforma#/industrias",
+    href: "/plataforma#industrias",
   },
   {
     icon: Truck,
@@ -52,7 +52,7 @@ const industries = [
     description:
       "Guías de remisión, control de transporte y facturación por ruta. Logística integrada.",
     keyword: "Guías de remisión Perú",
-    href: "/plataforma#/industrias",
+    href: "/plataforma#industrias",
   },
 ];
 
@@ -74,24 +74,24 @@ export function Industries() {
           </p>
         </Reveal>
 
+        {/* Centered cards */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-black/8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5"
         >
           {industries.map((ind) => (
-            <motion.div
-              key={ind.title}
-              variants={staggerItem}
-            >
+            <motion.div key={ind.title} variants={staggerItem}>
               <Link
                 href={ind.href}
-                className="group block p-6 lg:p-8 border-r border-b border-black/8 bg-background hover:bg-brand-ink hover:text-white transition-colors duration-300 h-full"
+                className="group block p-6 lg:p-8 rounded-2xl border border-black/8 dark:border-white/8 bg-background text-center hover:bg-brand-ink hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300 h-full"
               >
-                <div className="inline-flex items-center justify-center size-11 rounded-lg bg-brand-orange/10 text-brand-orange mb-5 group-hover:bg-brand-orange group-hover:text-white transition-colors">
-                  <ind.icon className="size-5" strokeWidth={1.75} />
+                <div className="flex items-center justify-center mb-5">
+                  <div className="inline-flex items-center justify-center size-14 rounded-2xl bg-brand-orange/10 text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                    <ind.icon className="size-6" strokeWidth={1.75} />
+                  </div>
                 </div>
                 <h3 className="font-display text-lg font-bold mb-2">{ind.title}</h3>
                 <p className="text-sm text-foreground/60 group-hover:text-white/60 leading-relaxed mb-4">

@@ -51,28 +51,28 @@ export function HowItWorks() {
           </p>
         </Reveal>
 
-        {/* Horizontal steps with connecting line — no cards */}
+        {/* Centered step cards */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-black/8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5"
         >
-          {steps.map((s, i) => (
+          {steps.map((s) => (
             <motion.div
               key={s.step}
               variants={staggerItem}
-              className={`relative pt-8 pb-8 px-6 lg:px-8 border-b border-black/8 sm:border-b-0 ${i < steps.length - 1 ? "sm:border-r border-black/8" : ""} ${i % 2 === 0 ? "sm:border-r" : ""} lg:border-b-0`}
+              className="group relative p-6 lg:p-8 rounded-2xl border border-black/8 dark:border-white/8 bg-card text-center hover:shadow-premium hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="flex items-center justify-between mb-5">
-                <div className="inline-flex items-center justify-center size-11 rounded-lg bg-brand-orange text-white shadow-glow-orange">
-                  <s.icon className="size-5" strokeWidth={1.75} />
+              <div className="flex items-center justify-center mb-5">
+                <div className="inline-flex items-center justify-center size-14 rounded-2xl bg-brand-orange text-white shadow-glow-orange group-hover:scale-110 transition-transform">
+                  <s.icon className="size-6" strokeWidth={1.75} />
                 </div>
-                <span className="font-display text-3xl font-extrabold text-foreground/10">
-                  {s.step}
-                </span>
               </div>
+              <span className="block font-display text-3xl font-extrabold text-foreground/10 mb-2">
+                {s.step}
+              </span>
               <h3 className="font-display text-base font-bold mb-2">{s.title}</h3>
               <p className="text-sm text-foreground/60 leading-relaxed">{s.description}</p>
             </motion.div>

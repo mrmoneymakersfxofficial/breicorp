@@ -37,30 +37,30 @@ export function Modules() {
           </Reveal>
         </div>
 
-        {/* Integrated grid — no rounded cards */}
+        {/* Centered cards */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 border-t border-l border-black/10"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-5"
         >
           {modules.map((module) => (
             <motion.div
               key={module.title}
               variants={staggerItem}
-              className="group relative p-5 lg:p-6 border-r border-b border-black/10 bg-background hover:bg-brand-ink hover:text-white transition-colors duration-300"
+              className="group relative p-5 lg:p-6 rounded-2xl border border-black/8 dark:border-white/8 bg-background text-center hover:bg-brand-ink hover:text-white hover:border-transparent hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="inline-flex items-center justify-center size-10 rounded-lg bg-brand-orange/10 text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">
+              <div className="flex items-center justify-center mb-4">
+                <div className="inline-flex items-center justify-center size-12 rounded-xl bg-brand-orange/10 text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">
                   <module.icon className="size-5" strokeWidth={1.75} />
                 </div>
-                {module.tag && (
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm bg-brand-orange/10 text-brand-orange group-hover:bg-white/15 group-hover:text-white transition-colors">
-                    {module.tag}
-                  </span>
-                )}
               </div>
+              {module.tag && (
+                <span className="block text-[9px] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm bg-brand-orange/10 text-brand-orange group-hover:bg-white/15 group-hover:text-white transition-colors mb-2 mx-auto w-fit">
+                  {module.tag}
+                </span>
+              )}
               <h3 className="font-display text-base font-bold mb-1.5">{module.title}</h3>
               <p className="text-xs text-foreground/55 group-hover:text-white/60 leading-relaxed">
                 {module.description}
