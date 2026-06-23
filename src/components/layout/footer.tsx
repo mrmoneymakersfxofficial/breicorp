@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, Clock, MessageCircle, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, MessageCircle, Linkedin, Instagram, Facebook, BookOpen } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { whatsappLink } from "@/lib/data/site-content";
 
@@ -145,15 +145,28 @@ export function Footer() {
           <p className="text-xs text-white/50">
             © {new Date().getFullYear()} BREICORP S.A.C. Todos los derechos reservados. RUC 20601234567.
           </p>
-          <div className="flex items-center gap-2 text-xs text-white/50">
-            <span className="inline-flex items-center gap-1.5">
-              <span className="size-1.5 rounded-full bg-green-400" />
-              Sistemas operativos
-            </span>
-            <span className="text-white/20">·</span>
-            <span>SUNAT compliant</span>
-            <span className="text-white/20">·</span>
-            <span>ISO 27001</span>
+          <div className="flex items-center gap-3 flex-wrap justify-center">
+            {/* Libro de Reclamaciones */}
+            <a
+              href="https://breicorpperu.breicorp.pe/complaint"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/15 bg-white/5 hover:bg-white/10 hover:border-white/25 transition-colors text-xs font-medium text-white/80"
+              aria-label="Libro de Reclamaciones"
+            >
+              <BookOpen className="size-3.5 text-brand-orange" />
+              Libro de Reclamaciones
+            </a>
+            <div className="flex items-center gap-2 text-xs text-white/50">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="size-1.5 rounded-full bg-green-400" />
+                Sistemas operativos
+              </span>
+              <span className="text-white/20">·</span>
+              <span>SUNAT compliant</span>
+              <span className="text-white/20">·</span>
+              <span>ISO 27001</span>
+            </div>
           </div>
         </div>
       </div>

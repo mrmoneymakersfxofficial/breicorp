@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X, ChevronDown, ArrowRight, MessageCircle, Sun, Moon } from "lucide-react";
-import { Logo } from "@/components/brand/logo";
+import { Logo, LogoMarkLight } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -74,17 +74,26 @@ export function Navbar() {
       {/* FULL-BLEED NAVBAR — edge-to-edge, no container padding, no rounded corners */}
       <div
         className={cn(
-          "w-full border-b transition-all duration-300",
+          "w-full transition-all duration-300",
           navState === "top"
-            ? "bg-background/80 border-border/60 backdrop-blur-xl"
-            : "bg-background/95 border-border shadow-[0_8px_32px_-8px_rgba(10,10,10,0.08)] backdrop-blur-2xl"
+            ? "bg-transparent border-transparent"
+            : "bg-background/95 border-border shadow-[0_8px_32px_-8px_rgba(10,10,10,0.08)] backdrop-blur-2xl border-b"
         )}
-        style={{ WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
+        style={navState === "top" ? {} : { WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
       >
         <div className="flex items-center justify-between gap-4 h-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          {/* Logo */}
+          {/* Logo — white when transparent over dark hero, normal when scrolled */}
           <Link href="/" className="flex items-center shrink-0" aria-label="BREICORP inicio">
-            <Logo size={32} />
+            {navState === "top" ? (
+              <span className="inline-flex items-center gap-2.5">
+                <LogoMarkLight size={32} />
+                <span className="font-display text-[1.05rem] font-extrabold tracking-tight text-white leading-none">
+                  BREI<span className="text-brand-orange">CORP</span>
+                </span>
+              </span>
+            ) : (
+              <Logo size={32} />
+            )}
           </Link>
 
           {/* Desktop nav — mega menu */}
@@ -102,7 +111,13 @@ export function Navbar() {
                     type="button"
                     className={cn(
                       "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors rounded-md",
-                      isActiveGroup ? "text-foreground" : "text-foreground/60 hover:text-foreground"
+                      navState === "top"
+                        ? isActiveGroup
+                          ? "text-white"
+                          : "text-white/70 hover:text-white"
+                        : isActiveGroup
+                          ? "text-foreground"
+                          : "text-foreground/60 hover:text-foreground"
                     )}
                     onClick={() => goToPage(group.page, group.sections[0].id)}
                   >
@@ -160,7 +175,12 @@ export function Navbar() {
                 type="button"
                 onClick={toggleTheme}
                 aria-label="Cambiar tema"
-                className="inline-flex items-center justify-center size-9 rounded-md text-foreground/60 hover:text-foreground hover:bg-foreground/[0.06] transition-colors"
+                className={cn(
+                  "inline-flex items-center justify-center size-9 rounded-md transition-colors",
+                  navState === "top"
+                    ? "text-white/70 hover:text-white hover:bg-white/10"
+                    : "text-foreground/60 hover:text-foreground hover:bg-foreground/[0.06]"
+                )}
               >
                 {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
               </button>
@@ -170,7 +190,12 @@ export function Navbar() {
               asChild
               variant="ghost"
               size="sm"
-              className="hidden md:inline-flex text-foreground/70 hover:text-foreground px-3"
+              className={cn(
+                "hidden md:inline-flex px-3",
+                navState === "top"
+                  ? "text-white/80 hover:text-white hover:bg-white/10"
+                  : "text-foreground/70 hover:text-foreground"
+              )}
             >
               <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="size-4" />
@@ -180,7 +205,12 @@ export function Navbar() {
             <Button
               asChild
               size="sm"
-              className="hidden md:inline-flex bg-brand-ink hover:bg-brand-ink/90 text-white dark:bg-brand-orange dark:hover:bg-brand-orange/90"
+              className={cn(
+                "hidden md:inline-flex",
+                navState === "top"
+                  ? "bg-brand-orange hover:bg-brand-orange/90 text-white shadow-glow-orange"
+                  : "bg-brand-ink hover:bg-brand-ink/90 text-white dark:bg-brand-orange dark:hover:bg-brand-orange/90"
+              )}
             >
               <Link href="/" onClick={() => scrollTo("inicio")}>
                 Solicitar demo
@@ -190,7 +220,12 @@ export function Navbar() {
             {/* Mobile trigger */}
             <button
               type="button"
-              className="lg:hidden inline-flex items-center justify-center size-9 rounded-md text-foreground hover:bg-foreground/[0.06] transition-colors"
+              className={cn(
+                "lg:hidden inline-flex items-center justify-center size-9 rounded-md transition-colors",
+                navState === "top"
+                  ? "text-white hover:bg-white/10"
+                  : "text-foreground hover:bg-foreground/[0.06]"
+              )}
               aria-label="Abrir menú"
               aria-expanded={open}
               onClick={() => setOpen(true)}

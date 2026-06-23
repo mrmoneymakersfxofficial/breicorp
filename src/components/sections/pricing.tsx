@@ -96,31 +96,33 @@ export function Pricing() {
                   </div>
                 )}
 
-                {/* Icon */}
-                <div
-                  className={cn(
-                    "inline-flex items-center justify-center size-11 mb-4",
-                    plan.highlighted
-                      ? "bg-brand-orange text-white"
-                      : "bg-brand-orange/10 text-brand-orange"
-                  )}
-                >
-                  <plan.icon className="size-5" strokeWidth={1.75} />
+                {/* Icon — centered */}
+                <div className="flex items-center justify-center mb-4">
+                  <div
+                    className={cn(
+                      "inline-flex items-center justify-center size-14 rounded-2xl",
+                      plan.highlighted
+                        ? "bg-brand-orange text-white"
+                        : "bg-brand-orange/10 text-brand-orange"
+                    )}
+                  >
+                    <plan.icon className="size-6" strokeWidth={1.75} />
+                  </div>
                 </div>
 
-                {/* Name + description */}
-                <h3 className="font-display text-lg font-bold mb-1">{plan.name}</h3>
+                {/* Name + description — centered */}
+                <h3 className="font-display text-lg font-bold mb-1 text-center">{plan.name}</h3>
                 <p
                   className={cn(
-                    "text-xs leading-relaxed mb-5 min-h-[2.5rem]",
+                    "text-xs leading-relaxed mb-5 min-h-[2.5rem] text-center",
                     plan.highlighted ? "text-white/60" : "text-foreground/55"
                   )}
                 >
                   {plan.description}
                 </p>
 
-                {/* Price — fixed height for alignment */}
-                <div className="mb-5 min-h-[4.5rem]">
+                {/* Price — fixed height for alignment, centered */}
+                <div className="mb-5 min-h-[4.5rem] flex flex-col items-center justify-start">
                   {cycle === "monthly" ? (
                     <div className="flex items-baseline gap-1">
                       <span className="text-sm font-semibold opacity-60">S/</span>
@@ -132,8 +134,8 @@ export function Pricing() {
                       </span>
                     </div>
                   ) : (
-                    <div>
-                      <div className="flex items-baseline gap-1">
+                    <div className="text-center">
+                      <div className="flex items-baseline gap-1 justify-center">
                         <span className="text-sm font-semibold opacity-60">S/</span>
                         <span className="font-display text-4xl font-extrabold tabular-nums">
                           {plan.yearly.toLocaleString("es-PE")}
