@@ -83,8 +83,10 @@ export function useScrollSpy({ sections, offset = 120, debounceMs = 60 }: UseScr
       for (const s of currentPageSections) {
         const el = document.getElementById(s.id);
         if (!el) continue;
-        const top = el.offsetTop;
-        if (top <= scrollY) current = s;
+        // Use getBoundingClientRect for accurate position relative to viewport
+        const rect = el.getBoundingClientRect();
+        const topFromDoc = rect.top + window.scrollY;
+        if (topFromDoc <= scrollY) current = s;
       }
       // Bottom of page → last section OF THE CURRENT PAGE
       if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 80) {

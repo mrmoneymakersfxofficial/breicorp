@@ -25,20 +25,16 @@ export function Navbar() {
 
   React.useEffect(() => setMounted(true), []);
 
-  // Scroll-aware dynamic behavior
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = lastScroll.current;
     lastScroll.current = latest;
-
     if (latest < 40) {
       setNavState("top");
       return;
     }
-    // Scrolling down → hide (after threshold)
-    if (latest > prev && latest > 280 && !open) {
+    if (latest > prev && latest > 320 && !open) {
       setNavState("hidden");
     } else {
-      // Scrolling up → show floating
       setNavState("floating");
     }
   });
@@ -65,42 +61,33 @@ export function Navbar() {
   return (
     <motion.header
       initial={false}
-      animate={{
-        y: navState === "hidden" ? "-110%" : 0,
-      }}
+      animate={{ y: navState === "hidden" ? "-110%" : 0 }}
       transition={{ duration: 0.32, ease: [0.21, 0.5, 0.27, 0.99] }}
-      className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        navState === "top" ? "py-3" : "py-2"
-      )}
+      className="fixed top-0 inset-x-0 z-50"
     >
-      <div className="container-page">
-        <motion.div
-          initial={false}
-          animate={{
-            backgroundColor:
-              navState === "top"
-                ? "rgba(255,255,255,0.6)"
-                : "rgba(255,255,255,0.85)",
-            borderColor:
-              navState === "top"
-                ? "rgba(10,10,10,0.06)"
-                : "rgba(10,10,10,0.10)",
-            boxShadow:
-              navState === "floating"
-                ? "0 8px 32px -8px rgba(10,10,10,0.10)"
-                : "0 0 0 0 transparent",
-          }}
-          transition={{ duration: 0.3 }}
-          className="flex items-center justify-between gap-4 px-4 sm:px-5 py-2.5 border-b backdrop-blur-xl"
-          style={{ WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
-        >
+      {/* Scroll progress bar (top edge, full bleed) */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-0.5 bg-brand-orange origin-left z-[60]"
+        style={{ scaleX: scrollYProgress }}
+      />
+
+      {/* FULL-BLEED NAVBAR — edge-to-edge, no container padding, no rounded corners */}
+      <div
+        className={cn(
+          "w-full border-b transition-all duration-300",
+          navState === "top"
+            ? "bg-background/80 border-border/60 backdrop-blur-xl"
+            : "bg-background/95 border-border shadow-[0_8px_32px_-8px_rgba(10,10,10,0.08)] backdrop-blur-2xl"
+        )}
+        style={{ WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
+      >
+        <div className="flex items-center justify-between gap-4 h-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0" aria-label="BREICORP inicio">
             <Logo size={32} />
           </Link>
 
-          {/* Desktop nav — mega menu style */}
+          {/* Desktop nav — mega menu */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Principal">
             {navGroups.map((group) => {
               const isActiveGroup = activePage === group.page;
@@ -115,9 +102,7 @@ export function Navbar() {
                     type="button"
                     className={cn(
                       "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors rounded-md",
-                      isActiveGroup
-                        ? "text-foreground"
-                        : "text-foreground/60 hover:text-foreground"
+                      isActiveGroup ? "text-foreground" : "text-foreground/60 hover:text-foreground"
                     )}
                     onClick={() => goToPage(group.page, group.sections[0].id)}
                   >
@@ -139,7 +124,7 @@ export function Navbar() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 8, scale: 0.98 }}
                         transition={{ duration: 0.18 }}
-                        className="absolute top-full left-0 mt-1 w-64 bg-background border border-black/8 shadow-[0_24px_60px_-12px_rgba(10,10,10,0.18)] rounded-lg p-2 overflow-hidden"
+                        className="absolute top-full left-0 mt-1 w-64 bg-popover border border-border shadow-premium rounded-lg p-2"
                       >
                         <p className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground/40">
                           {group.label}
@@ -153,7 +138,7 @@ export function Navbar() {
                               "flex items-center justify-between w-full px-3 py-2 text-sm text-left rounded-md transition-colors",
                               activeId === s.id && activePage === s.page
                                 ? "bg-brand-orange/10 text-brand-orange"
-                                : "text-foreground/70 hover:bg-black/[0.04] hover:text-foreground"
+                                : "text-foreground/70 hover:bg-black/[0.04] hover:text-foreground dark:hover:bg-white/[0.06]"
                             )}
                           >
                             <span>{s.label}</span>
@@ -170,19 +155,14 @@ export function Navbar() {
 
           {/* Right actions */}
           <div className="flex items-center gap-1.5 sm:gap-2">
-            {/* Theme toggle */}
             {mounted && (
               <button
                 type="button"
                 onClick={toggleTheme}
                 aria-label="Cambiar tema"
-                className="inline-flex items-center justify-center size-9 rounded-md text-foreground/60 hover:text-foreground hover:bg-black/[0.04] transition-colors"
+                className="inline-flex items-center justify-center size-9 rounded-md text-foreground/60 hover:text-foreground hover:bg-foreground/[0.06] transition-colors"
               >
-                {theme === "dark" ? (
-                  <Sun className="size-4" />
-                ) : (
-                  <Moon className="size-4" />
-                )}
+                {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
               </button>
             )}
 
@@ -200,7 +180,7 @@ export function Navbar() {
             <Button
               asChild
               size="sm"
-              className="hidden md:inline-flex bg-brand-ink hover:bg-brand-ink/90 text-white"
+              className="hidden md:inline-flex bg-brand-ink hover:bg-brand-ink/90 text-white dark:bg-brand-orange dark:hover:bg-brand-orange/90"
             >
               <Link href="/" onClick={() => scrollTo("inicio")}>
                 Solicitar demo
@@ -210,7 +190,7 @@ export function Navbar() {
             {/* Mobile trigger */}
             <button
               type="button"
-              className="lg:hidden inline-flex items-center justify-center size-10 rounded-md hover:bg-black/[0.04] transition-colors"
+              className="lg:hidden inline-flex items-center justify-center size-9 rounded-md text-foreground hover:bg-foreground/[0.06] transition-colors"
               aria-label="Abrir menú"
               aria-expanded={open}
               onClick={() => setOpen(true)}
@@ -218,16 +198,10 @@ export function Navbar() {
               <Menu className="size-5" />
             </button>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Scroll progress bar (top of navbar) */}
-      <motion.div
-        className="absolute top-0 left-0 right-0 h-0.5 bg-brand-orange origin-left z-[60]"
-        style={{ scaleX: scrollYProgress }}
-      />
-
-      {/* Mobile drawer — full screen, premium */}
+      {/* Mobile drawer — full screen */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -237,11 +211,11 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
             className="lg:hidden fixed inset-0 z-50 bg-background flex flex-col"
           >
-            <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-black/8">
+            <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-border shrink-0">
               <Logo size={32} />
               <button
                 type="button"
-                className="inline-flex items-center justify-center size-10 rounded-md hover:bg-black/[0.04]"
+                className="inline-flex items-center justify-center size-9 rounded-md hover:bg-foreground/[0.06]"
                 aria-label="Cerrar menú"
                 onClick={() => setOpen(false)}
               >
@@ -273,7 +247,7 @@ export function Navbar() {
                             "flex items-center justify-between w-full px-3 py-3 text-base font-medium text-left rounded-md transition-colors",
                             isActive
                               ? "bg-brand-orange/10 text-brand-orange"
-                              : "text-foreground/80 hover:bg-black/[0.04]"
+                              : "text-foreground/80 hover:bg-foreground/[0.04]"
                           )}
                         >
                           <span>{s.label}</span>
@@ -286,10 +260,10 @@ export function Navbar() {
               ))}
             </div>
 
-            <div className="border-t border-black/8 p-4 sm:p-6 space-y-2.5">
+            <div className="border-t border-border p-4 sm:p-6 space-y-2.5 shrink-0">
               <Button
                 asChild
-                className="w-full justify-center bg-brand-ink hover:bg-brand-ink/90 text-white h-12"
+                className="w-full justify-center bg-brand-ink hover:bg-brand-ink/90 text-white dark:bg-brand-orange dark:hover:bg-brand-orange/90 h-12"
               >
                 <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="size-4" />
@@ -299,7 +273,7 @@ export function Navbar() {
               <Button
                 asChild
                 variant="outline"
-                className="w-full justify-center h-12 border-black/15"
+                className="w-full justify-center h-12 border-border"
               >
                 <Link
                   href="/"

@@ -17,6 +17,14 @@ import {
   Crown,
   Shield,
   TrendingUp,
+  FileText,
+  FolderArchive,
+  Store,
+  Package,
+  Smartphone,
+  GraduationCap,
+  MessageCircle,
+  Layers,
   type LucideIcon,
 } from "lucide-react";
 
@@ -146,6 +154,7 @@ export interface Plan {
   yearly: number;
   description: string;
   features: string[];
+  featureIcons?: LucideIcon[];
   cta: string;
   highlighted?: boolean;
   badge?: string;
@@ -170,6 +179,7 @@ export const plans: Plan[] = [
       "Capacitación online o presencial",
       "Soporte por WhatsApp",
     ],
+    featureIcons: [FileText, FolderArchive, Store, Users, Package, Layers, Smartphone, GraduationCap, MessageCircle],
     cta: "Elegir plan",
   },
   {
@@ -190,6 +200,7 @@ export const plans: Plan[] = [
       "Capacitación online o presencial",
       "Soporte por WhatsApp",
     ],
+    featureIcons: [FileText, FolderArchive, Store, Users, Package, Layers, Smartphone, GraduationCap, MessageCircle],
     cta: "Solicitar demo",
     highlighted: true,
     badge: "Plan recomendado",
@@ -212,6 +223,7 @@ export const plans: Plan[] = [
       "Capacitación online o presencial",
       "Soporte por WhatsApp",
     ],
+    featureIcons: [FileText, FolderArchive, Store, Users, Package, Layers, Smartphone, GraduationCap, MessageCircle],
     cta: "Elegir plan",
   },
   {
@@ -232,6 +244,7 @@ export const plans: Plan[] = [
       "Capacitación online o presencial",
       "Soporte por WhatsApp",
     ],
+    featureIcons: [FileText, FolderArchive, Store, Users, Package, Layers, Smartphone, GraduationCap, MessageCircle],
     cta: "Elegir plan",
   },
 ];
