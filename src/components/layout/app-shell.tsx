@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { WhatsAppFloat } from "@/components/layout/whatsapp-float";
+import { BottomNav } from "@/components/layout/bottom-nav";
 import { NavProvider } from "@/lib/nav-config";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { allSections } from "@/lib/nav-config";
@@ -18,7 +19,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
     if (typeof window === "undefined") return;
     const hash = window.location.hash.replace(/^#\/?/, "");
-    // Pause spy so it doesn't overwrite the hash while we scroll programmatically
     pause(1200);
     if (!hash) {
       window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
@@ -45,8 +45,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         }
         return;
       }
+      // Navigate to another subpage. Use hash so the route-change effect scrolls.
       if (sectionId) {
-        router.push(`${page}#/${sectionId}`);
+        router.push(`${page}#${sectionId}`);
       } else {
         router.push(page);
       }
@@ -55,19 +56,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <NavProvider
-      value={{
-        activeId,
-        activePage,
-        scrollTo,
-        goToPage,
-      }}
-    >
+    <NavProvider value={{ activeId, activePage, scrollTo, goToPage }}>
       <div className="relative min-h-screen flex flex-col bg-background">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-20 lg:pb-0">{children}</main>
         <Footer />
         <WhatsAppFloat />
+        <BottomNav />
       </div>
     </NavProvider>
   );
