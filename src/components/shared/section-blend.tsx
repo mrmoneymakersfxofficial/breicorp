@@ -5,18 +5,6 @@ import { cn } from "@/lib/utils";
 
 type BlendColor = "bg" | "ink" | "gray" | "white" | "transparent";
 
-/**
- * Resolve blend color to the CSS variable that responds to theme.
- * "white" maps to --background so it inverts correctly in dark mode.
- */
-const colorMap: Record<BlendColor, string> = {
-  bg: "var(--background)",
-  ink: "var(--brand-ink)",
-  gray: "var(--brand-gray)",
-  white: "var(--background)",
-  transparent: "transparent",
-};
-
 interface SectionBlendProps {
   from?: BlendColor;
   to?: BlendColor;
@@ -28,11 +16,11 @@ interface SectionBlendProps {
 }
 
 /**
- * Wraps a section with cinematic blended transitions.
- * Ultra-subtle 0.3cm (~11px) difuminado on each side.
- * The fade overlays use theme-aware CSS variables so they work in both light and dark mode.
+ * Wraps a section with ultra-subtle external edge blending.
+ * Uses mask-image on the container so the section itself fades at its edges —
+ * no internal overlay divs, no visible lines between sections.
  *
- * Inspired by Apple / Stripe / Linear / Vercel / Arc.
+ * 0.3cm (~11px) fade on each edge.
  */
 export function SectionBlend({
   from = "transparent",
@@ -43,46 +31,50 @@ export function SectionBlend({
   className,
   style,
 }: SectionBlendProps) {
+  const hasFrom = from !== "transparent";
+  const hasTo = to !== "transparent";
+
+  // Build a single combined mask-image with all stops
+  const maskStyle = React.useMemo(() => {
+    const stops: string[] = [];
+
+    if (hasFrom) {
+      // Top 11px: transparent → opaque
+      stops.push("transparent 0px", "black 11px");
+    } else {
+      stops.push("black 0px");
+    }
+
+    if (hasTo) {
+      // Bottom 11px: opaque → transparent
+      stops.push("black calc(100% - 11px)", "transparent 100%");
+    } else {
+      stops.push("black 100%");
+    }
+
+    return {
+      WebkitMaskImage: `linear-gradient(to bottom, ${stops.join(", ")})`,
+      maskImage: `linear-gradient(to bottom, ${stops.join(", ")})`,
+    };
+  }, [hasFrom, hasTo]);
+
   return (
     <div
-      className={cn("relative", noise && "bg-noise", className)}
-      style={style}
+      className={cn(noise && "bg-noise", className)}
+      style={{ ...style, ...maskStyle }}
     >
-      {/* Top fade — blends into the section above (subtle ~11px / 0.3cm) */}
-      {from !== "transparent" && (
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-[11px] pointer-events-none z-[2]"
-          style={{
-            background: `linear-gradient(to bottom, ${colorMap[from]} 0%, transparent 100%)`,
-          }}
-        />
-      )}
-
-      {/* Ambient orange glow diffusion (for dark → light transitions) */}
       {glow && (
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-[30px] pointer-events-none z-[1]"
+          className="absolute inset-x-0 top-0 h-[20px] pointer-events-none z-[1]"
           style={{
             background:
-              "radial-gradient(60% 100% at 50% 0%, rgba(255,104,1,0.08) 0%, rgba(255,104,1,0.02) 50%, transparent 100%)",
+              "radial-gradient(60% 100% at 50% 0%, rgba(255,104,1,0.06) 0%, transparent 100%)",
           }}
         />
       )}
 
-      <div className="relative z-[3]">{children}</div>
-
-      {/* Bottom fade — blends into the section below (subtle ~11px / 0.3cm) */}
-      {to !== "transparent" && (
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-[11px] pointer-events-none z-[2]"
-          style={{
-            background: `linear-gradient(to top, ${colorMap[to]} 0%, transparent 100%)`,
-          }}
-        />
-      )}
+      {children}
     </div>
   );
 }

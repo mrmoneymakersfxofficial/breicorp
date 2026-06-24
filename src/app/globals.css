@@ -271,142 +271,37 @@ html.dark {
     @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-orange;
   }
 
-  /* ===== PREMIUM SECTION TRANSITIONS (cinematic blended separators) ===== */
-  /* Ultra-subtle 0.3cm (~11px) difuminado on each side */
+  /* ===== SECTION TRANSITIONS — mask-based, no overlay lines ===== */
+  /* Uses mask-image so the section itself fades at its edges.
+     No pseudo-elements, no colored overlay bands, no visible lines. */
 
-  /* Section that comes AFTER a dark section */
-  .blend-from-dark::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 11px;
-    pointer-events: none;
-    z-index: 2;
-    background: linear-gradient(to bottom, var(--brand-ink) 0%, transparent 100%);
+  .blend-from-dark,
+  .blend-from-light,
+  .blend-from-gray {
+    --bm-t: linear-gradient(to bottom, transparent 0px, black 11px);
   }
 
-  /* Section that comes AFTER a light section */
-  .blend-from-light::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 11px;
-    pointer-events: none;
-    z-index: 2;
-    background: linear-gradient(to bottom, var(--background) 0%, transparent 100%);
+  .blend-to-dark,
+  .blend-to-light,
+  .blend-to-gray {
+    --bm-b: linear-gradient(to top, transparent 0px, black 11px);
   }
 
-  /* Section that comes AFTER a gray section */
-  .blend-from-gray::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 11px;
-    pointer-events: none;
-    z-index: 2;
-    background: linear-gradient(to bottom, var(--brand-gray) 0%, transparent 100%);
+  /* Apply combined mask when any blend class is present */
+  .blend-from-dark, .blend-from-light, .blend-from-gray,
+  .blend-to-dark, .blend-to-light, .blend-to-gray,
+  .blend-top, .blend-bottom, .blend-both {
+    -webkit-mask-image: var(--bm-t, black), var(--bm-b, black);
+    mask-image: var(--bm-t, black), var(--bm-b, black);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
   }
 
-  /* Section that goes INTO a dark section */
-  .blend-to-dark::after {
-    content: "";
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 11px;
-    pointer-events: none;
-    z-index: 2;
-    background: linear-gradient(to top, var(--brand-ink) 0%, transparent 100%);
-  }
-
-  /* Section that goes INTO a light section */
-  .blend-to-light::after {
-    content: "";
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 11px;
-    pointer-events: none;
-    z-index: 2;
-    background: linear-gradient(to top, var(--background) 0%, transparent 100%);
-  }
-
-  /* Section that goes INTO a gray section */
-  .blend-to-gray::after {
-    content: "";
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 11px;
-    pointer-events: none;
-    z-index: 2;
-    background: linear-gradient(to top, var(--brand-gray) 0%, transparent 100%);
-  }
-
-  /* Legacy blend classes (kept for compatibility) */
-  .blend-top {
-    position: relative;
-  }
-  .blend-top::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 11px;
-    pointer-events: none;
-    z-index: 1;
-    background: linear-gradient(to bottom, var(--blend-from, transparent) 0%, transparent 100%);
-  }
-
-  /* Soft fade-in at the bottom of a section */
-  .blend-bottom {
-    position: relative;
-  }
-  .blend-bottom::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 11px;
-    pointer-events: none;
-    z-index: 1;
-    background: linear-gradient(to top, var(--blend-to, transparent) 0%, transparent 100%);
-  }
-
-  /* Full blend wrapper — top + bottom fade */
+  .blend-top { --bm-t: linear-gradient(to bottom, var(--blend-from, transparent) 0px, black 11px); }
+  .blend-bottom { --bm-b: linear-gradient(to top, var(--blend-to, transparent) 0px, black 11px); }
   .blend-both {
-    position: relative;
-  }
-  .blend-both::before,
-  .blend-both::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0;
-    height: 11px;
-    pointer-events: none;
-    z-index: 2;
-  }
-  .blend-both::before {
-    top: 0;
-    background: linear-gradient(to bottom, var(--blend-from, transparent) 0%, transparent 100%);
-  }
-  .blend-both::after {
-    bottom: 0;
-    background: linear-gradient(to top, var(--blend-to, transparent) 0%, transparent 100%);
-  }
-
-  /* Ambient orange glow diffusion for dark → light transitions */
-  .glow-diffusion {
-    position: relative;
-  }
-  .glow-diffusion::before {
-    content: "";
-    position: absolute;
-    inset: -5% 0 auto 0;
-    height: 30px;
-    pointer-events: none;
-    z-index: 1;
-    background: radial-gradient(
-      60% 100% at 50% 100%,
-      rgba(255, 104, 1, 0.08) 0%,
-      rgba(255, 104, 1, 0.02) 50%,
-      transparent 100%
-    );
+    --bm-t: linear-gradient(to bottom, var(--blend-from, transparent) 0px, black 11px);
+    --bm-b: linear-gradient(to top, var(--blend-to, transparent) 0px, black 11px);
   }
 
   /* Subtle background noise texture for depth */
