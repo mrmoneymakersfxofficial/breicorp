@@ -52,8 +52,8 @@ export function WhatsAppFloat() {
                 <X className="size-4" />
               </button>
             </div>
-            <div className="p-3.5 bg-brand-gray dark:bg-zinc-900">
-              <div className="bg-white dark:bg-zinc-800 rounded-lg rounded-tl-none p-2.5 shadow-sm text-[13px] text-brand-black/90 mb-2 leading-relaxed">
+            <div className="p-3.5 bg-brand-gray">
+              <div className="bg-background rounded-lg rounded-tl-none p-2.5 shadow-sm text-[13px] text-foreground mb-2 leading-relaxed">
                 ¡Hola! 👋 Soy parte del equipo BREICORP. ¿En qué podemos ayudarte con tu facturación electrónica?
               </div>
               <a
