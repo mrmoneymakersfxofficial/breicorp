@@ -15,7 +15,7 @@ export function Faq() {
   const { scrollTo } = useNav();
 
   return (
-    <section id="faq" className="relative py-16 lg:py-24 bg-background overflow-hidden blend-from-gray blend-to-gray">
+    <section id="faq" className="relative py-16 lg:py-24 bg-background overflow-hidden">
       <div className="container-page grid lg:grid-cols-12 gap-10 lg:gap-16">
         <Reveal className="lg:col-span-4">
           <span className="eyebrow">FAQ</span>

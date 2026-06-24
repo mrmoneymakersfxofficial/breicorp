@@ -313,39 +313,6 @@ html.dark {
     @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-orange;
   }
 
-  /* ===== SECTION TRANSITIONS — mask-based, no overlay lines ===== */
-  /* Uses mask-image so the section itself fades at its edges.
-     No pseudo-elements, no colored overlay bands, no visible lines. */
-
-  .blend-from-dark,
-  .blend-from-light,
-  .blend-from-gray {
-    --bm-t: linear-gradient(to bottom, transparent 0px, black 11px);
-  }
-
-  .blend-to-dark,
-  .blend-to-light,
-  .blend-to-gray {
-    --bm-b: linear-gradient(to top, transparent 0px, black 11px);
-  }
-
-  /* Apply combined mask when any blend class is present */
-  .blend-from-dark, .blend-from-light, .blend-from-gray,
-  .blend-to-dark, .blend-to-light, .blend-to-gray,
-  .blend-top, .blend-bottom, .blend-both {
-    -webkit-mask-image: var(--bm-t, black), var(--bm-b, black);
-    mask-image: var(--bm-t, black), var(--bm-b, black);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
-  }
-
-  .blend-top { --bm-t: linear-gradient(to bottom, var(--blend-from, transparent) 0px, black 11px); }
-  .blend-bottom { --bm-b: linear-gradient(to top, var(--blend-to, transparent) 0px, black 11px); }
-  .blend-both {
-    --bm-t: linear-gradient(to bottom, var(--blend-from, transparent) 0px, black 11px);
-    --bm-b: linear-gradient(to top, var(--blend-to, transparent) 0px, black 11px);
-  }
-
   /* Subtle background noise texture for depth */
   .bg-noise {
     position: relative;

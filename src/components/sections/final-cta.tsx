@@ -11,7 +11,7 @@ export function FinalCta() {
   const { scrollTo } = useNav();
 
   return (
-    <section id="contacto" className="relative py-16 lg:py-24 bg-brand-gray overflow-hidden blend-from-gray">
+    <section id="contacto" className="relative py-16 lg:py-24 bg-brand-gray overflow-hidden">
       <div className="container-page">
         <Reveal>
           <div className="relative overflow-hidden bg-brand-ink text-white px-6 py-14 sm:px-10 sm:py-16 lg:px-20 lg:py-24">

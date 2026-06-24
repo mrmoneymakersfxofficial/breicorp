@@ -90,7 +90,7 @@ export function Navbar() {
             ? isOverDark
               ? "bg-transparent border-transparent"
               : "bg-background/80 border-transparent backdrop-blur-md"
-            : "bg-background/95 border-border shadow-[0_8px_32px_-8px_rgba(10,10,10,0.08)] backdrop-blur-2xl border-b"
+            : "bg-background/95 border-border shadow-[0_8px_32px_-8px_rgba(10,10,10,0.08)] dark:shadow-[0_8px_32px_-8px_rgba(0,0,0,0.5)] backdrop-blur-2xl border-b"
         )}
         style={navState === "top" ? {} : { WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
       >

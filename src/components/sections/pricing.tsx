@@ -15,7 +15,7 @@ export function Pricing() {
   const [cycle, setCycle] = React.useState<Cycle>("monthly");
 
   return (
-    <section id="planes" className="relative py-16 lg:py-24 bg-background overflow-hidden blend-from-gray blend-to-gray">
+    <section id="planes" className="relative py-16 lg:py-24 bg-background overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-orange/40 to-transparent" />
       <div className="absolute top-40 left-1/2 -translate-x-1/2 size-[600px] rounded-full bg-brand-orange/5 blur-3xl pointer-events-none" />
 

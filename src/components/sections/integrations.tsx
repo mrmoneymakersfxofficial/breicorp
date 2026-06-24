@@ -17,7 +17,7 @@ const integrations = [
 
 export function Integrations() {
   return (
-    <section id="integraciones" className="relative py-16 lg:py-24 bg-background overflow-hidden blend-from-gray">
+    <section id="integraciones" className="relative py-16 lg:py-24 bg-background overflow-hidden">
       <div className="container-page">
         <Reveal className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
           <span className="eyebrow justify-center">Integraciones</span>
@@ -42,7 +42,7 @@ export function Integrations() {
             <motion.div
               key={int.name}
               variants={staggerItem}
-              className="group p-6 lg:p-7 rounded-2xl border border-black/8 dark:border-white/8 bg-card text-center hover:shadow-premium hover:-translate-y-1 transition-all duration-300"
+              className="group p-6 lg:p-7 rounded-2xl border border-black/8 dark:border-white/8 bg-card text-center hover:shadow-premium hover:border-brand-orange/20 dark:hover:border-brand-orange/20 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="flex items-center justify-center mb-4">
                 <div className="inline-flex items-center justify-center size-12 rounded-xl bg-brand-orange/10 text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">

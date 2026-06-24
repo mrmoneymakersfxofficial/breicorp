@@ -37,7 +37,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="como-funciona" className="relative py-16 lg:py-24 bg-background overflow-hidden blend-to-gray">
+    <section id="como-funciona" className="relative py-16 lg:py-24 bg-background overflow-hidden">
       <div className="container-page">
         <Reveal className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
           <span className="eyebrow justify-center">Cómo funciona</span>
@@ -63,7 +63,7 @@ export function HowItWorks() {
             <motion.div
               key={s.step}
               variants={staggerItem}
-              className="group relative p-6 lg:p-8 rounded-2xl border border-black/8 dark:border-white/8 bg-card text-center hover:shadow-premium hover:-translate-y-1 transition-all duration-300"
+              className="group relative p-6 lg:p-8 rounded-2xl border border-black/8 dark:border-white/8 bg-card text-center hover:shadow-premium hover:border-brand-orange/20 dark:hover:border-brand-orange/20 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="flex items-center justify-center mb-5">
                 <div className="inline-flex items-center justify-center size-14 rounded-2xl bg-brand-orange text-white shadow-glow-orange group-hover:scale-110 transition-transform">

@@ -13,7 +13,7 @@ const logos = [
 
 export function TrustBar() {
   return (
-    <section className="relative bg-background border-b border-black/8 dark:border-white/8 py-8 sm:py-10 blend-from-dark overflow-hidden">
+    <section className="relative bg-background border-b border-black/8 dark:border-white/8 py-8 sm:py-10 overflow-hidden">
       <div className="container-page">
         <p className="text-center text-[11px] font-medium uppercase tracking-[0.18em] text-foreground/40 mb-6 sm:mb-7">
           Más de 2,400 empresas en Perú confían en BREICORP

@@ -10,7 +10,7 @@ export function Modules() {
   const { scrollTo } = useNav();
 
   return (
-    <section id="modulos" className="relative py-16 lg:py-24 bg-brand-gray blend-from-light blend-to-dark overflow-hidden">
+    <section id="modulos" className="relative py-16 lg:py-24 bg-brand-gray overflow-hidden">
       <div className="absolute inset-0 bg-grid-dark dark:bg-grid opacity-40" aria-hidden="true" />
 
       <div className="container-page relative">

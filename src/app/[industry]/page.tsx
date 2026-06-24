@@ -64,7 +64,7 @@ export default async function IndustryRoute({ params }: PageProps) {
       />
 
       {/* HERO */}
-      <SectionBlend to="white" glow>
+      <SectionBlend glow>
         <IndustryHero
           iconName={page.icon.name}
           headline={page.heroHeadline}
@@ -74,7 +74,6 @@ export default async function IndustryRoute({ params }: PageProps) {
       </SectionBlend>
 
       {/* BENEFITS */}
-      <SectionBlend from="white" to="gray">
         <section className="py-16 lg:py-24 bg-background">
           <div className="container-page">
             <Reveal className="max-w-2xl">
@@ -102,10 +101,8 @@ export default async function IndustryRoute({ params }: PageProps) {
             </Reveal>
           </div>
         </section>
-      </SectionBlend>
 
       {/* FEATURES */}
-      <SectionBlend from="gray" to="gray">
         <section className="py-16 lg:py-24 bg-brand-gray">
           <div className="container-page">
             <Reveal className="max-w-2xl">
@@ -137,10 +134,8 @@ export default async function IndustryRoute({ params }: PageProps) {
             </Reveal>
           </div>
         </section>
-      </SectionBlend>
 
       {/* FAQ */}
-      <SectionBlend from="gray" to="gray">
         <section className="py-16 lg:py-24 bg-background">
           <div className="container-page grid lg:grid-cols-12 gap-10 lg:gap-16">
             <Reveal className="lg:col-span-4">
@@ -173,10 +168,8 @@ export default async function IndustryRoute({ params }: PageProps) {
             </Reveal>
           </div>
         </section>
-      </SectionBlend>
 
       {/* CTA */}
-      <SectionBlend from="white" to="gray">
         <section className="py-16 lg:py-24 bg-brand-gray">
           <div className="container-page">
             <div className="relative overflow-hidden bg-brand-ink text-white px-6 py-14 sm:px-10 sm:py-16 lg:px-20 lg:py-20">
@@ -221,7 +214,6 @@ export default async function IndustryRoute({ params }: PageProps) {
             </div>
           </div>
         </section>
-      </SectionBlend>
     </AppShell>
   );
 }

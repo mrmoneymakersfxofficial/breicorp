@@ -74,28 +74,13 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* Hero — dark section, fades into white TrustBar */}
-      <SectionBlend to="white" glow>
+      <SectionBlend glow>
         <Hero />
       </SectionBlend>
-
-      {/* TrustBar — white, fades into gray Modules */}
-      <SectionBlend from="white" to="gray">
-        <TrustBar />
-      </SectionBlend>
-
-      {/* Benefits — gray, fades into gray (soft) */}
-      <SectionBlend from="gray" to="gray">
-        <Benefits />
-      </SectionBlend>
-
-      {/* Modules — gray, fades into dark DashboardPreview with glow */}
-      <SectionBlend from="gray" to="ink" glow>
-        <Modules />
-      </SectionBlend>
-
-      {/* DashboardPreview — dark, fades into white (next page) */}
-      <SectionBlend from="ink" to="white" glow>
+      <TrustBar />
+      <Benefits />
+      <Modules />
+      <SectionBlend glow>
         <DashboardPreview />
       </SectionBlend>
     </AppShell>

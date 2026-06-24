@@ -33,7 +33,7 @@ const pillars = [
 
 export function About() {
   return (
-    <section id="nosotros" className="relative py-16 lg:py-24 bg-brand-gray overflow-hidden blend-to-light">
+    <section id="nosotros" className="relative py-16 lg:py-24 bg-brand-gray overflow-hidden">
       <div className="absolute inset-0 bg-grid-dark dark:bg-grid opacity-40" aria-hidden="true" />
 
       <div className="container-page relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">

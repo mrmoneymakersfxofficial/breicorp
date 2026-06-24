@@ -23,7 +23,7 @@ interface IndustryHeroProps {
 export function IndustryHero({ iconName, headline, subheadline, stats }: IndustryHeroProps) {
   const Icon = iconMap[iconName] ?? UtensilsCrossed;
   return (
-    <section className="relative overflow-hidden bg-brand-ink text-white pt-28 pb-16 sm:pt-32 lg:pt-40 lg:pb-24 blend-to-light">
+    <section className="relative overflow-hidden bg-brand-ink text-white pt-28 pb-16 sm:pt-32 lg:pt-40 lg:pb-24">
       <div className="absolute inset-0 bg-grid opacity-40" aria-hidden="true" />
       <div className="absolute -top-32 -right-32 size-[500px] rounded-full bg-brand-orange/20 blur-[120px]" aria-hidden="true" />
 

@@ -33,7 +33,7 @@ export function Benefits() {
             <motion.div
               key={benefit.title}
               variants={staggerItem}
-              className="group relative p-6 lg:p-8 rounded-2xl border border-black/8 dark:border-white/8 bg-card text-center hover:shadow-premium hover:-translate-y-1 transition-all duration-300"
+              className="group relative p-6 lg:p-8 rounded-2xl border border-black/8 dark:border-white/8 bg-card text-center hover:shadow-premium hover:border-brand-orange/20 dark:hover:border-brand-orange/20 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="inline-flex items-center justify-center size-14 rounded-2xl bg-brand-orange/10 text-brand-orange mb-5 group-hover:bg-brand-orange group-hover:text-white transition-colors mx-auto">
                 <benefit.icon className="size-6" strokeWidth={1.75} />
