@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X, ChevronDown, ArrowRight, MessageCircle, Sun, Moon } from "lucide-react";
 import { Logo, LogoMarkLight } from "@/components/brand/logo";
@@ -13,6 +14,9 @@ import { navGroups, useNav } from "@/lib/nav-config";
 
 type NavState = "top" | "floating" | "hidden";
 
+/** Pages whose first section is dark (hero with bg-brand-ink) */
+const DARK_HERO_PAGES = ["/", "/facturacion-para-restaurantes", "/facturacion-para-clinicas", "/facturacion-para-minimarket", "/software-pos-peru"];
+
 export function Navbar() {
   const [navState, setNavState] = React.useState<NavState>("top");
   const [open, setOpen] = React.useState(false);
@@ -22,6 +26,10 @@ export function Navbar() {
   const [mounted, setMounted] = React.useState(false);
   const { scrollY, scrollYProgress } = useScroll();
   const lastScroll = React.useRef(0);
+  const pathname = usePathname();
+
+  // Detect if the current page has a dark hero above the fold
+  const hasDarkHero = DARK_HERO_PAGES.includes(pathname);
 
   React.useEffect(() => setMounted(true), []);
 
@@ -58,6 +66,9 @@ export function Navbar() {
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
+  // In top state: white text only if page has dark hero, otherwise use foreground
+  const isOverDark = navState === "top" && hasDarkHero;
+
   return (
     <motion.header
       initial={false}
@@ -76,15 +87,17 @@ export function Navbar() {
         className={cn(
           "w-full transition-all duration-300",
           navState === "top"
-            ? "bg-transparent border-transparent"
+            ? isOverDark
+              ? "bg-transparent border-transparent"
+              : "bg-background/80 border-transparent backdrop-blur-md"
             : "bg-background/95 border-border shadow-[0_8px_32px_-8px_rgba(10,10,10,0.08)] backdrop-blur-2xl border-b"
         )}
         style={navState === "top" ? {} : { WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
       >
         <div className="flex items-center justify-between gap-4 h-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          {/* Logo — white when transparent over dark hero, normal when scrolled */}
+          {/* Logo — white when over dark hero, normal otherwise */}
           <Link href="/" className="flex items-center shrink-0" aria-label="BREICORP inicio">
-            {navState === "top" ? (
+            {isOverDark ? (
               <span className="inline-flex items-center gap-2.5">
                 <LogoMarkLight size={32} />
                 <span className="font-display text-[1.05rem] font-extrabold tracking-tight text-white leading-none">
@@ -111,7 +124,7 @@ export function Navbar() {
                     type="button"
                     className={cn(
                       "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors rounded-md",
-                      navState === "top"
+                      isOverDark
                         ? isActiveGroup
                           ? "text-white"
                           : "text-white/70 hover:text-white"
@@ -177,7 +190,7 @@ export function Navbar() {
                 aria-label="Cambiar tema"
                 className={cn(
                   "inline-flex items-center justify-center size-9 rounded-md transition-colors",
-                  navState === "top"
+                  isOverDark
                     ? "text-white/70 hover:text-white hover:bg-white/10"
                     : "text-foreground/60 hover:text-foreground hover:bg-foreground/[0.06]"
                 )}
@@ -192,7 +205,7 @@ export function Navbar() {
               size="sm"
               className={cn(
                 "hidden md:inline-flex px-3",
-                navState === "top"
+                isOverDark
                   ? "text-white/80 hover:text-white hover:bg-white/10"
                   : "text-foreground/70 hover:text-foreground"
               )}
@@ -207,7 +220,7 @@ export function Navbar() {
               size="sm"
               className={cn(
                 "hidden md:inline-flex",
-                navState === "top"
+                isOverDark
                   ? "bg-brand-orange hover:bg-brand-orange/90 text-white shadow-glow-orange"
                   : "bg-brand-ink hover:bg-brand-ink/90 text-white dark:bg-brand-orange dark:hover:bg-brand-orange/90"
               )}
@@ -222,7 +235,7 @@ export function Navbar() {
               type="button"
               className={cn(
                 "lg:hidden inline-flex items-center justify-center size-9 rounded-md transition-colors",
-                navState === "top"
+                isOverDark
                   ? "text-white hover:bg-white/10"
                   : "text-foreground hover:bg-foreground/[0.06]"
               )}

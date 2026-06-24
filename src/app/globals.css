@@ -107,6 +107,50 @@
   --sidebar-ring: #ff6801;
 }
 
+html.dark {
+  /* Brand — same orange, inverted surfaces */
+  --brand-orange: #ff6801;
+  --brand-orange-soft: #ff8a3d;
+  --brand-orange-deep: #e25700;
+  --brand-black: #0a0a0a;
+  --brand-ink: #0a0a0a;
+  --brand-white: #ffffff;
+  --brand-gray: #1a1a1a;
+
+  /* Dark theme */
+  --background: #0a0a0a;
+  --foreground: #f0f0f0;
+  --card: #141414;
+  --card-foreground: #f0f0f0;
+  --popover: #141414;
+  --popover-foreground: #f0f0f0;
+  --primary: #ff6801;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #e5e5e5;
+  --muted: #1e1e1e;
+  --muted-foreground: #a1a1aa;
+  --accent: #2a1a0a;
+  --accent-foreground: #ff8a3d;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #ff6801;
+  --chart-1: #ff6801;
+  --chart-2: #f0f0f0;
+  --chart-3: #555555;
+  --chart-4: #ff8a3d;
+  --chart-5: #1a1a1a;
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #f0f0f0;
+  --sidebar-primary: #ff6801;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #f0f0f0;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-ring: #ff6801;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -228,96 +272,72 @@
   }
 
   /* ===== PREMIUM SECTION TRANSITIONS (cinematic blended separators) ===== */
-  /* Ultra-smooth 0.2cm (~8px visual) difuminado on each side */
+  /* Ultra-subtle 0.3cm (~11px) difuminado on each side */
 
-  /* Section that comes AFTER a dark section — fades from dark at top to transparent */
+  /* Section that comes AFTER a dark section */
   .blend-from-dark::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
+    top: 0; left: 0; right: 0;
+    height: 11px;
     pointer-events: none;
     z-index: 2;
     background: linear-gradient(to bottom, var(--brand-ink) 0%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
   }
 
-  /* Section that comes AFTER a light/gray section — fades from light at top to transparent */
+  /* Section that comes AFTER a light section */
   .blend-from-light::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
+    top: 0; left: 0; right: 0;
+    height: 11px;
     pointer-events: none;
     z-index: 2;
     background: linear-gradient(to bottom, var(--background) 0%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
   }
 
-  /* Section that comes AFTER a gray section — fades from gray at top to transparent */
+  /* Section that comes AFTER a gray section */
   .blend-from-gray::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
+    top: 0; left: 0; right: 0;
+    height: 11px;
     pointer-events: none;
     z-index: 2;
     background: linear-gradient(to bottom, var(--brand-gray) 0%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
   }
 
-  /* Section that goes INTO a dark section — fades to dark at bottom */
+  /* Section that goes INTO a dark section */
   .blend-to-dark::after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
+    bottom: 0; left: 0; right: 0;
+    height: 11px;
     pointer-events: none;
     z-index: 2;
     background: linear-gradient(to top, var(--brand-ink) 0%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
-    mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
   }
 
-  /* Section that goes INTO a light section — fades to light at bottom */
+  /* Section that goes INTO a light section */
   .blend-to-light::after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
+    bottom: 0; left: 0; right: 0;
+    height: 11px;
     pointer-events: none;
     z-index: 2;
     background: linear-gradient(to top, var(--background) 0%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
-    mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
   }
 
-  /* Section that goes INTO a gray section — fades to gray at bottom */
+  /* Section that goes INTO a gray section */
   .blend-to-gray::after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 120px;
+    bottom: 0; left: 0; right: 0;
+    height: 11px;
     pointer-events: none;
     z-index: 2;
     background: linear-gradient(to top, var(--brand-gray) 0%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
-    mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
   }
 
   /* Legacy blend classes (kept for compatibility) */
@@ -328,19 +348,13 @@
     content: "";
     position: absolute;
     inset: 0 0 auto 0;
-    height: 120px;
+    height: 11px;
     pointer-events: none;
     z-index: 1;
-    background: linear-gradient(
-      to bottom,
-      var(--blend-from, transparent) 0%,
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    background: linear-gradient(to bottom, var(--blend-from, transparent) 0%, transparent 100%);
   }
 
-  /* Soft fade-in at the bottom of a section — blends into whatever is below */
+  /* Soft fade-in at the bottom of a section */
   .blend-bottom {
     position: relative;
   }
@@ -348,19 +362,13 @@
     content: "";
     position: absolute;
     inset: auto 0 0 0;
-    height: 120px;
+    height: 11px;
     pointer-events: none;
     z-index: 1;
-    background: linear-gradient(
-      to top,
-      var(--blend-to, transparent) 0%,
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
-    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+    background: linear-gradient(to top, var(--blend-to, transparent) 0%, transparent 100%);
   }
 
-  /* Full atmospheric blend wrapper — adds top + bottom fade */
+  /* Full blend wrapper — top + bottom fade */
   .blend-both {
     position: relative;
   }
@@ -368,9 +376,8 @@
   .blend-both::after {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    height: 140px;
+    left: 0; right: 0;
+    height: 11px;
     pointer-events: none;
     z-index: 2;
   }
@@ -390,17 +397,16 @@
   .glow-diffusion::before {
     content: "";
     position: absolute;
-    inset: -20% 0 auto 0;
-    height: 220px;
+    inset: -5% 0 auto 0;
+    height: 30px;
     pointer-events: none;
     z-index: 1;
     background: radial-gradient(
       60% 100% at 50% 100%,
-      rgba(255, 104, 1, 0.12) 0%,
-      rgba(255, 104, 1, 0.04) 40%,
-      transparent 70%
+      rgba(255, 104, 1, 0.08) 0%,
+      rgba(255, 104, 1, 0.02) 50%,
+      transparent 100%
     );
-    filter: blur(20px);
   }
 
   /* Subtle background noise texture for depth */
@@ -432,6 +438,16 @@
   background-clip: padding-box;
 }
 ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 104, 1, 0.5);
+  background-clip: padding-box;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 104, 1, 0.5);
   background-clip: padding-box;
 }
