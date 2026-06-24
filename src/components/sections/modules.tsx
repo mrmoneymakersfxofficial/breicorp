@@ -11,7 +11,7 @@ export function Modules() {
 
   return (
     <section id="modulos" className="relative py-16 lg:py-24 bg-brand-gray blend-from-light blend-to-dark overflow-hidden">
-      <div className="absolute inset-0 bg-grid-dark opacity-40" aria-hidden="true" />
+      <div className="absolute inset-0 bg-grid-dark dark:bg-grid opacity-40" aria-hidden="true" />
 
       <div className="container-page relative">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 lg:mb-14">

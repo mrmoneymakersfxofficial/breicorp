@@ -30,7 +30,7 @@ export function WhatsAppFloat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-[280px] sm:w-[300px] max-w-[calc(100vw-2rem)] rounded-xl bg-background border border-black/10 shadow-float overflow-hidden"
+            className="w-[280px] sm:w-[300px] max-w-[calc(100vw-2rem)] rounded-xl bg-background border border-black/10 dark:border-white/10 shadow-float overflow-hidden"
           >
             <div className="bg-[#075E54] text-white p-3.5 flex items-start gap-3">
               <div className="size-9 rounded-full bg-white/15 flex items-center justify-center shrink-0">
@@ -52,8 +52,8 @@ export function WhatsAppFloat() {
                 <X className="size-4" />
               </button>
             </div>
-            <div className="p-3.5 bg-brand-gray">
-              <div className="bg-white rounded-lg rounded-tl-none p-2.5 shadow-sm text-[13px] text-foreground/90 mb-2 leading-relaxed">
+            <div className="p-3.5 bg-brand-gray dark:bg-zinc-900">
+              <div className="bg-white dark:bg-zinc-800 rounded-lg rounded-tl-none p-2.5 shadow-sm text-[13px] text-brand-black/90 mb-2 leading-relaxed">
                 ¡Hola! 👋 Soy parte del equipo BREICORP. ¿En qué podemos ayudarte con tu facturación electrónica?
               </div>
               <a

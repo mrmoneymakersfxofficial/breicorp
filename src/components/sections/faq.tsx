@@ -36,12 +36,12 @@ export function Faq() {
         </Reveal>
 
         <Reveal delay={0.1} className="lg:col-span-8">
-          <Accordion type="single" collapsible className="w-full border-t border-black/8">
+          <Accordion type="single" collapsible className="w-full border-t border-black/8 dark:border-white/8">
             {faqs.map((faq, i) => (
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="border-b border-black/8 px-1"
+                className="border-b border-black/8 dark:border-white/8 px-1"
               >
                 <AccordionTrigger className="text-left text-sm sm:text-base font-semibold hover:no-underline py-5">
                   {faq.question}

@@ -28,14 +28,14 @@ export function Testimonials() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-black/8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-black/8 dark:border-white/8"
         >
           {testimonials.map((t, i) => (
             <motion.figure
               key={t.name}
               variants={staggerItem}
               className={cn(
-                "relative p-6 lg:p-8 border-r border-b border-black/8 hover:bg-brand-gray/50 transition-colors",
+                "relative p-6 lg:p-8 border-r border-b border-black/8 dark:border-white/8 hover:bg-brand-gray/50 transition-colors",
                 i === 0 && "lg:row-span-2 lg:bg-brand-ink lg:text-white lg:hover:bg-brand-ink"
               )}
             >

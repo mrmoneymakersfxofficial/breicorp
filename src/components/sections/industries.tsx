@@ -59,7 +59,7 @@ const industries = [
 export function Industries() {
   return (
     <section id="industrias" className="relative py-16 lg:py-24 bg-brand-gray">
-      <div className="absolute inset-0 bg-grid-dark opacity-40" aria-hidden="true" />
+      <div className="absolute inset-0 bg-grid-dark dark:bg-grid opacity-40" aria-hidden="true" />
 
       <div className="container-page relative">
         <Reveal className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">

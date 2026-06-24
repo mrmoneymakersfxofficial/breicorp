@@ -88,11 +88,11 @@ export default async function IndustryRoute({ params }: PageProps) {
             </Reveal>
 
             <Reveal delay={0.1} className="mt-12">
-              <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-black/8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-black/8 dark:border-white/8">
                 {page.benefits.map((b) => (
                   <div
                     key={b.title}
-                    className="group p-6 lg:p-8 border-r border-b border-black/8 hover:bg-brand-gray/50 transition-colors"
+                    className="group p-6 lg:p-8 border-r border-b border-black/8 dark:border-white/8 hover:bg-brand-gray/50 transition-colors"
                   >
                     <h3 className="font-display text-lg font-bold mb-2">{b.title}</h3>
                     <p className="text-sm text-foreground/60 leading-relaxed">{b.description}</p>
@@ -116,11 +116,11 @@ export default async function IndustryRoute({ params }: PageProps) {
             </Reveal>
 
             <Reveal delay={0.1} className="mt-12">
-              <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-l border-black/8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-l border-black/8 dark:border-white/8">
                 {page.features.map((f) => (
                   <div
                     key={f.title}
-                    className="p-6 lg:p-8 border-r border-b border-black/8 bg-background hover:bg-brand-gray/50 transition-colors"
+                    className="p-6 lg:p-8 border-r border-b border-black/8 dark:border-white/8 bg-background hover:bg-brand-gray/50 transition-colors"
                   >
                     <div className="flex items-start gap-4">
                       <div className="inline-flex items-center justify-center size-8 bg-brand-orange/10 text-brand-orange shrink-0 mt-1">
@@ -154,12 +154,12 @@ export default async function IndustryRoute({ params }: PageProps) {
             </Reveal>
 
             <Reveal delay={0.1} className="lg:col-span-8">
-              <Accordion type="single" collapsible className="w-full border-t border-black/8">
+              <Accordion type="single" collapsible className="w-full border-t border-black/8 dark:border-white/8">
                 {page.faqs.map((faq, i) => (
                   <AccordionItem
                     key={i}
                     value={`item-${i}`}
-                    className="border-b border-black/8 px-1"
+                    className="border-b border-black/8 dark:border-white/8 px-1"
                   >
                     <AccordionTrigger className="text-left text-sm sm:text-base font-semibold hover:no-underline py-5">
                       {faq.question}

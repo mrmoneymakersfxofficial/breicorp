@@ -34,7 +34,7 @@ const pillars = [
 export function About() {
   return (
     <section id="nosotros" className="relative py-16 lg:py-24 bg-brand-gray overflow-hidden blend-to-light">
-      <div className="absolute inset-0 bg-grid-dark opacity-40" aria-hidden="true" />
+      <div className="absolute inset-0 bg-grid-dark dark:bg-grid opacity-40" aria-hidden="true" />
 
       <div className="container-page relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
         <Reveal className="lg:col-span-5 lg:sticky lg:top-28">
@@ -58,14 +58,14 @@ export function About() {
           </p>
 
           {/* Stats — integrated, no cards */}
-          <div className="mt-8 grid grid-cols-2 border-t border-l border-black/8">
-            <div className="p-5 border-r border-b border-black/8">
+          <div className="mt-8 grid grid-cols-2 border-t border-l border-black/8 dark:border-white/8">
+            <div className="p-5 border-r border-b border-black/8 dark:border-white/8">
               <p className="font-display text-2xl font-extrabold text-brand-orange">
                 <Counter value={8} suffix=" años" />
               </p>
               <p className="text-xs text-foreground/55 mt-1">Construyendo software fiscal</p>
             </div>
-            <div className="p-5 border-r border-b border-black/8">
+            <div className="p-5 border-r border-b border-black/8 dark:border-white/8">
               <p className="font-display text-2xl font-extrabold text-brand-orange">
                 <Counter value={45} suffix="+" />
               </p>
@@ -79,13 +79,13 @@ export function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="lg:col-span-7 border-t border-black/8"
+          className="lg:col-span-7 border-t border-black/8 dark:border-white/8"
         >
           {pillars.map((p) => (
             <motion.div
               key={p.title}
               variants={staggerItem}
-              className="group flex items-start gap-5 py-6 lg:py-7 border-b border-black/8 hover:bg-background/50 px-2 transition-colors"
+              className="group flex items-start gap-5 py-6 lg:py-7 border-b border-black/8 dark:border-white/8 hover:bg-background/50 px-2 transition-colors"
             >
               <div className="inline-flex items-center justify-center size-12 bg-brand-ink text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors shrink-0">
                 <p.icon className="size-5" strokeWidth={1.75} />
@@ -102,7 +102,7 @@ export function About() {
             {["ISO 27001", "SUNAT PSE", "PCI DSS", "GDPR Ready", "SLA 99.99%"].map((badge) => (
               <span
                 key={badge}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-background border border-black/10 text-xs font-medium text-foreground/70"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-background border border-black/10 dark:border-white/10 text-xs font-medium text-foreground/70"
               >
                 <Lock className="size-3 text-brand-orange" />
                 {badge}
