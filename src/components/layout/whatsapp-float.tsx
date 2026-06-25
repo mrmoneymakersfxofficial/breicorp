@@ -20,7 +20,7 @@ export function WhatsAppFloat() {
     <div
       className={cn(
         // Desktop: bottom-right. Mobile: above bottom-nav (h-16 + safe-area ≈ 98px)
-        "fixed bottom-24 right-4 lg:bottom-6 lg:right-6 z-40 flex flex-col items-end gap-2.5 transition-all duration-500",
+        "fixed bottom-24 right-4 lg:bottom-6 lg:right-6 z-40 hidden lg:flex flex-col items-end gap-2.5 transition-all duration-500",
         show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       )}
     >
