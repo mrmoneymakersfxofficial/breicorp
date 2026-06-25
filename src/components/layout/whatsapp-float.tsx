@@ -19,7 +19,7 @@ export function WhatsAppFloat() {
   return (
     <div
       className={cn(
-        "fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 flex flex-col items-end gap-2.5 transition-all duration-500",
+        "fixed bottom-24 right-4 sm:bottom-5 sm:right-5 z-40 hidden lg:flex flex-col items-end gap-2.5 transition-all duration-500",
         show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       )}
     >

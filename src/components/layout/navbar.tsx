@@ -74,7 +74,7 @@ export function Navbar() {
       initial={false}
       animate={{ y: navState === "hidden" ? "-110%" : 0 }}
       transition={{ duration: 0.32, ease: [0.21, 0.5, 0.27, 0.99] }}
-      className="fixed top-0 inset-x-0 z-50"
+      className={cn("fixed top-0 inset-x-0", open ? "z-[60]" : "z-50")}
     >
       {/* Scroll progress bar (top edge, full bleed) */}
       <motion.div
@@ -255,7 +255,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden fixed inset-0 z-50 bg-background flex flex-col"
+            className="lg:hidden fixed inset-0 z-[60] bg-background flex flex-col"
           >
             <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-border shrink-0">
               <Image
