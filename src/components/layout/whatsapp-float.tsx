@@ -19,7 +19,8 @@ export function WhatsAppFloat() {
   return (
     <div
       className={cn(
-        "fixed bottom-24 right-4 sm:bottom-5 sm:right-5 z-40 hidden lg:flex flex-col items-end gap-2.5 transition-all duration-500",
+        // Desktop: bottom-right. Mobile: above bottom-nav (h-16 + safe-area ≈ 98px)
+        "fixed bottom-24 right-4 lg:bottom-6 lg:right-6 z-40 flex flex-col items-end gap-2.5 transition-all duration-500",
         show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       )}
     >
@@ -30,8 +31,9 @@ export function WhatsAppFloat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-[280px] sm:w-[300px] max-w-[calc(100vw-2rem)] rounded-xl bg-background border border-black/10 dark:border-white/10 shadow-float overflow-hidden"
+            className="w-[280px] sm:w-[300px] max-w-[calc(100vw-2rem)] rounded-2xl bg-background border border-black/10 dark:border-white/10 shadow-float overflow-hidden"
           >
+            {/* Chat header — WhatsApp teal */}
             <div className="bg-[#075E54] text-white p-3.5 flex items-start gap-3">
               <div className="size-9 rounded-full bg-white/15 flex items-center justify-center shrink-0">
                 <WhatsAppIcon className="size-4.5" />
@@ -52,6 +54,7 @@ export function WhatsAppFloat() {
                 <X className="size-4" />
               </button>
             </div>
+            {/* Chat body */}
             <div className="p-3.5 bg-brand-gray">
               <div className="bg-background rounded-lg rounded-tl-none p-2.5 shadow-sm text-[13px] text-foreground mb-2 leading-relaxed">
                 ¡Hola! 👋 Soy parte del equipo BREICORP. ¿En qué podemos ayudarte con tu facturación electrónica?
@@ -69,33 +72,38 @@ export function WhatsAppFloat() {
         )}
       </AnimatePresence>
 
-      <button
+      {/* FAB — official WhatsApp green circle */}
+      <motion.button
         type="button"
         onClick={() => setOpen((v) => !v)}
+        whileHover={!reduceMotion ? { scale: 1.08 } : undefined}
+        whileTap={!reduceMotion ? { scale: 0.94 } : undefined}
         aria-label="Contactar por WhatsApp"
-        className={cn(
-          "inline-flex items-center justify-center size-12 sm:size-14 rounded-full bg-[#25D366] hover:bg-[#1ebd58] text-white shadow-[0_10px_30px_-6px_rgba(37,211,102,0.55)] transition-all",
-          !reduceMotion && "hover:scale-105 active:scale-95"
-        )}
+        className="relative inline-flex items-center justify-center size-14 lg:size-[60px] rounded-full text-white shadow-[0_4px_14px_-2px_rgba(37,211,102,0.45),0_8px_28px_-4px_rgba(37,211,102,0.25)] hover:shadow-[0_6px_20px_-2px_rgba(37,211,102,0.55),0_12px_36px_-6px_rgba(37,211,102,0.30)] transition-shadow duration-300 bg-[#25D366] hover:bg-[#20BA5A] active:bg-[#1a9e4a]"
       >
-        {!open && (
-          <span
-            className="absolute inset-0 rounded-full bg-[#25D366] opacity-50 animate-ping"
+        {/* Pulse ring — only when closed and first shown */}
+        {!open && show && (
+          <motion.span
+            initial={{ scale: 1, opacity: 0.5 }}
+            animate={{ scale: 1.6, opacity: 0 }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+            className="absolute inset-0 rounded-full bg-[#25D366] pointer-events-none"
             aria-hidden="true"
           />
         )}
         <span className="relative">
           {open ? (
-            <X className="size-5 sm:size-6" />
+            <X className="size-6" strokeWidth={2} />
           ) : (
-            <WhatsAppIcon className="size-6 sm:size-7" />
+            <WhatsAppIcon className="size-7 lg:size-[30px]" />
           )}
         </span>
-      </button>
+      </motion.button>
     </div>
   );
 }
 
+/** Official WhatsApp logo icon (exact SVG path) */
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
