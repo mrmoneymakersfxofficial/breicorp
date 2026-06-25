@@ -72,13 +72,13 @@ export function BottomNav() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactar por WhatsApp"
-          className="relative block h-full"
+          className="flex items-center justify-center h-full"
         >
           <motion.span
             whileTap={{ scale: 0.92 }}
             whileHover={{ scale: 1.06 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="absolute left-1/2 -translate-x-1/2 -top-7 size-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_4px_14px_-2px_rgba(37,211,102,0.50),0_8px_28px_-4px_rgba(37,211,102,0.30)] ring-[3px] ring-background hover:shadow-[0_6px_20px_-2px_rgba(37,211,102,0.60),0_12px_36px_-6px_rgba(37,211,102,0.35)]"
+            className="size-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_4px_14px_-2px_rgba(37,211,102,0.50),0_8px_28px_-4px_rgba(37,211,102,0.30)] hover:shadow-[0_6px_20px_-2px_rgba(37,211,102,0.60),0_12px_36px_-6px_rgba(37,211,102,0.35)]"
           >
             <WhatsAppIcon className="size-7" />
           </motion.span>
