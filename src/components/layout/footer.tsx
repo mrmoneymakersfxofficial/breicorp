@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin, Clock, MessageCircle, Linkedin, Instagram, Facebook, BookOpen } from "lucide-react";
-import { Logo } from "@/components/brand/logo";
 import { whatsappLink } from "@/lib/data/site-content";
 
 const footerNav = {
@@ -38,14 +38,13 @@ export function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center justify-center size-9 rounded-xl bg-primary">
-                <LogoMarkMini />
-              </span>
-              <span className="font-display text-xl font-extrabold tracking-tight">
-                BREI<span className="text-primary">CORP</span>
-              </span>
-            </div>
+            <Image
+              src="/logo/breicorp-logo-nav.png"
+              alt="BREICORP"
+              width={44}
+              height={44}
+              className="h-11 w-auto object-contain"
+            />
             <p className="text-sm text-white/60 leading-relaxed max-w-sm">
               Plataforma SaaS de facturación electrónica empresarial para Perú. Cumplimiento SUNAT, automatización y control en tiempo real. Diseñada para empresas que quieren escalar.
             </p>
@@ -141,9 +140,21 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col items-center gap-4">
           <p className="text-xs text-white/50">
             © {new Date().getFullYear()} BREICORP S.A.C. Todos los derechos reservados. RUC 20601234567.
+          </p>
+          <p className="text-xs text-white/40">
+            Diseñado y desarrollado por{" "}
+            <a
+              href="https://fastpagepro.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold hover:underline"
+              style={{ color: "#FF6801" }}
+            >
+              FastPagePro
+            </a>
           </p>
           <div className="flex items-center gap-3 flex-wrap justify-center">
             {/* Libro de Reclamaciones */}
@@ -174,10 +185,4 @@ export function Footer() {
   );
 }
 
-function LogoMarkMini() {
-  return (
-    <svg viewBox="0 0 24 24" className="size-5 text-white" fill="currentColor" aria-hidden="true">
-      <path d="M7 5h5.5c2.7 0 4.5 1.2 4.5 3.4 0 1.5-.8 2.4-2.1 2.9 1.6.4 2.5 1.5 2.5 3.2 0 2.4-1.9 3.8-4.9 3.8H7V5Zm2.9 5h2.6c1.1 0 1.8-.4 1.8-1.3 0-.8-.7-1.2-1.8-1.2H9.9V10Zm0 5.4h2.8c1.2 0 1.9-.5 1.9-1.4 0-.9-.7-1.4-1.9-1.4H9.9v2.8Z" />
-    </svg>
-  );
-}
+

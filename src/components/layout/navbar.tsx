@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X, ChevronDown, ArrowRight, MessageCircle, Sun, Moon } from "lucide-react";
-import { Logo, LogoMarkLight } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -95,18 +95,16 @@ export function Navbar() {
         style={navState === "top" ? {} : { WebkitBackdropFilter: "blur(20px) saturate(180%)" }}
       >
         <div className="flex items-center justify-between gap-4 h-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          {/* Logo — white when over dark hero, normal otherwise */}
-          <Link href="/" className="flex items-center shrink-0" aria-label="BREICORP inicio">
-            {isOverDark ? (
-              <span className="inline-flex items-center gap-2.5">
-                <LogoMarkLight size={32} />
-                <span className="font-display text-[1.05rem] font-extrabold tracking-tight text-white leading-none">
-                  BREI<span className="text-brand-orange">CORP</span>
-                </span>
-              </span>
-            ) : (
-              <Logo size={32} />
-            )}
+          {/* Logo — official BREICORP brand logo */}
+          <Link href="/" className="flex items-center shrink-0 pl-1 sm:pl-2" aria-label="BREICORP inicio">
+            <Image
+              src="/logo/breicorp-logo-nav.png"
+              alt="BREICORP"
+              width={40}
+              height={40}
+              className="h-9 w-auto sm:h-10 object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop nav — mega menu */}
@@ -260,7 +258,13 @@ export function Navbar() {
             className="lg:hidden fixed inset-0 z-50 bg-background flex flex-col"
           >
             <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-border shrink-0">
-              <Logo size={32} />
+              <Image
+                src="/logo/breicorp-logo-nav.png"
+                alt="BREICORP"
+                width={40}
+                height={40}
+                className="h-9 w-auto object-contain"
+              />
               <button
                 type="button"
                 className="inline-flex items-center justify-center size-9 rounded-md hover:bg-foreground/[0.06]"
