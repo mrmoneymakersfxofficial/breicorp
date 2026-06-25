@@ -72,17 +72,16 @@ export function BottomNav() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactar por WhatsApp"
-          className="relative flex flex-col items-center justify-center"
+          className="relative block h-full"
         >
           <motion.span
             whileTap={{ scale: 0.92 }}
             whileHover={{ scale: 1.06 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="absolute -top-6 size-[60px] rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_4px_14px_-2px_rgba(37,211,102,0.50),0_8px_28px_-4px_rgba(37,211,102,0.30)] ring-[3px] ring-background hover:shadow-[0_6px_20px_-2px_rgba(37,211,102,0.60),0_12px_36px_-6px_rgba(37,211,102,0.35)]"
+            className="absolute left-1/2 -translate-x-1/2 -top-7 size-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_4px_14px_-2px_rgba(37,211,102,0.50),0_8px_28px_-4px_rgba(37,211,102,0.30)] ring-[3px] ring-background hover:shadow-[0_6px_20px_-2px_rgba(37,211,102,0.60),0_12px_36px_-6px_rgba(37,211,102,0.35)]"
           >
             <WhatsAppIcon className="size-7" />
           </motion.span>
-          <span className="mt-8 text-[9px] font-semibold text-[#25D366]">WhatsApp</span>
         </a>
 
         {/* Tab 4: Empresa */}
