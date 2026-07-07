@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, Play, ShieldCheck, Zap, BarChart3, Lock } from "lucide-react";
+import { ArrowRight, MessageCircle, Play, ShieldCheck, Zap, BarChart3, Lock, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardMockup } from "@/components/dashboard/dashboard-mockup";
 import { whatsappLink } from "@/lib/data/site-content";
@@ -81,8 +81,11 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.12 }}
               className="text-base sm:text-lg text-white/70 leading-relaxed max-w-xl"
             >
-              Automatiza tus procesos, cumple con la normativa de SUNAT y obtén el
-              control total de tu negocio en tiempo real.
+              Empresa tecnológica especializada en software empresarial,
+              automatización y soluciones digitales para hacer crecer tu negocio.
+              Emite boletas y facturas electrónicas, controla tus ventas, productos,
+              clientes, inventario y reportes desde una plataforma web y móvil diseñada
+              para negocios peruanos.
             </motion.p>
 
             {/* CTAs */}
@@ -107,8 +110,19 @@ export function Hero() {
                 className="bg-white/5 border-white/20 text-white hover:bg-white/10 hover:text-white h-12 sm:h-11"
               >
                 <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="size-4" />
+                  Hablar por WhatsApp
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="bg-white/5 border-white/20 text-white hover:bg-white/10 hover:text-white h-12 sm:h-11"
+              >
+                <a href="/app-movil" rel="noopener noreferrer">
                   <Play className="size-4" />
-                  Ver cómo funciona
+                  Descargar app
                 </a>
               </Button>
             </motion.div>

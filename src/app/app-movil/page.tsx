@@ -111,7 +111,7 @@ export default function AppMovilPage() {
                   >
                     <a href="#" target="_blank" rel="noopener noreferrer">
                       <Download className="size-4" />
-                      Google Play
+                      Play Store
                     </a>
                   </Button>
                 </div>
