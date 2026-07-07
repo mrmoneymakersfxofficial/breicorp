@@ -13,7 +13,7 @@ const jsonLd = {
       "@type": "Organization",
       "@id": "https://breicorp.com/#organization",
       name: "BREICORP",
-      alternateName: "BREICORP S.A.C.",
+      alternateName: "BREICORP E.I.R.L.",
       url: "https://breicorp.com",
       logo: "https://breicorp.com/brand/logo.png",
       description:
@@ -30,9 +30,9 @@ const jsonLd = {
       },
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Av. Javier Prado 1234, San Isidro",
-        addressLocality: "Lima",
-        addressRegion: "LIMA",
+        streetAddress: "Av. Tito Jaime 642",
+        addressLocality: "Tingo María",
+        addressRegion: "Huánuco",
         addressCountry: "PE",
       },
     },

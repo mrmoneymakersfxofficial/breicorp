@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { whatsappLink } from "@/lib/data/site-content";
-import { navGroups, useNav } from "@/lib/nav-config";
+import { navGroups, navLinks, useNav } from "@/lib/nav-config";
 
 type NavState = "top" | "floating" | "hidden";
 
@@ -21,6 +21,7 @@ export function Navbar() {
   const [navState, setNavState] = React.useState<NavState>("top");
   const [open, setOpen] = React.useState(false);
   const [openGroup, setOpenGroup] = React.useState<string | null>(null);
+  const [openMore, setOpenMore] = React.useState(false);
   const { activeId, activePage, scrollTo, goToPage } = useNav();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
@@ -62,6 +63,11 @@ export function Navbar() {
     } else {
       goToPage(page, sectionId);
     }
+  };
+
+  const handleDirectLinkClick = () => {
+    setOpen(false);
+    setOpenMore(false);
   };
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
@@ -177,6 +183,58 @@ export function Navbar() {
                 </div>
               );
             })}
+
+            {/* "Más" dropdown for direct links */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenMore(true)}
+              onMouseLeave={() => setOpenMore(false)}
+            >
+              <button
+                type="button"
+                className={cn(
+                  "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors rounded-md",
+                  isOverDark
+                    ? "text-white/70 hover:text-white"
+                    : "text-foreground/60 hover:text-foreground"
+                )}
+              >
+                Más
+                <ChevronDown className="size-3.5 opacity-50" />
+              </button>
+
+              <AnimatePresence>
+                {openMore && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute top-full right-0 mt-1 w-56 bg-popover border border-border shadow-premium rounded-lg p-2"
+                  >
+                    <p className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground/40">
+                      Páginas
+                    </p>
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={handleDirectLinkClick}
+                        className={cn(
+                          "flex items-center justify-between w-full px-3 py-2 text-sm text-left rounded-md transition-colors",
+                          pathname === link.href
+                            ? "bg-brand-orange/10 text-brand-orange"
+                            : "text-foreground/70 hover:bg-black/[0.04] hover:text-foreground dark:hover:bg-white/[0.06]"
+                        )}
+                      >
+                        <span>{link.label}</span>
+                        <ArrowRight className="size-3 opacity-40" />
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           {/* Right actions */}
@@ -310,6 +368,38 @@ export function Navbar() {
                   </div>
                 </motion.div>
               ))}
+
+              {/* Direct links section in mobile drawer */}
+              <motion.div
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.08 + navGroups.length * 0.06 }}
+                className="mb-6"
+              >
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground/40 mb-2 px-1">
+                  Más páginas
+                </p>
+                <div className="space-y-0.5">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={handleDirectLinkClick}
+                      className={cn(
+                        "flex items-center justify-between w-full px-3 py-3 text-base font-medium text-left rounded-md transition-colors",
+                        pathname === link.href
+                          ? "bg-brand-orange/10 text-brand-orange"
+                          : "text-foreground/80 hover:bg-foreground/[0.04]"
+                      )}
+                    >
+                      <span>{link.label}</span>
+                      {pathname === link.href && (
+                        <span className="size-1.5 rounded-full bg-brand-orange" />
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
             </div>
 
             <div className="border-t border-border p-4 sm:p-6 space-y-2.5 shrink-0">

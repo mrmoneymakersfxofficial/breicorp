@@ -1,29 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, MapPin, Clock, MessageCircle, Linkedin, Instagram, Facebook, BookOpen } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, MessageCircle, Linkedin, Instagram, Facebook, BookOpen, Building2, Smartphone } from "lucide-react";
 import { whatsappLink } from "@/lib/data/site-content";
 
 const footerNav = {
   Producto: [
-    { label: "Beneficios", href: "#beneficios" },
-    { label: "Módulos", href: "#modulos" },
-    { label: "Dashboard", href: "#dashboard" },
-    { label: "Planes", href: "#planes" },
-    { label: "API REST", href: "#modulos" },
+    { label: "Módulos", href: "/modulos" },
+    { label: "Planes", href: "/planes" },
+    { label: "Rubros", href: "/rubros" },
+    { label: "App Móvil", href: "/app-movil" },
+    { label: "Plataforma", href: "/plataforma" },
   ],
   Empresa: [
-    { label: "Nosotros", href: "#nosotros" },
-    { label: "Clientes", href: "#testimonios" },
-    { label: "Casos de éxito", href: "#testimonios" },
-    { label: "Contacto", href: "#contacto" },
+    { label: "Nosotros", href: "/empresa" },
+    { label: "Clientes", href: "/clientes" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Contacto", href: "/contacto" },
     { label: "Blog", href: "#" },
   ],
   Legal: [
     { label: "Términos y condiciones", href: "#" },
     { label: "Política de privacidad", href: "#" },
     { label: "Política de cookies", href: "#" },
-    { label: "Seguridad", href: "#" },
-    { label: "Cumplimiento SUNAT", href: "#" },
+    { label: "Seguridad", href: "/seguridad" },
+    { label: "Cumplimiento SUNAT", href: "/seguridad" },
   ],
 };
 
@@ -120,7 +120,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2.5 text-white/70">
                 <MapPin className="size-4 mt-0.5 text-primary shrink-0" />
-                <span>Av. Javier Prado 1234, San Isidro, Lima</span>
+                <span>Av. Tito Jaime 642, Tingo María - Huánuco</span>
               </li>
               <li className="flex items-start gap-2.5 text-white/70">
                 <Clock className="size-4 mt-0.5 text-primary shrink-0" />
@@ -139,10 +139,35 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Medios de pago */}
+        <div className="mt-10 pt-8 border-t border-white/10">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-white/40 text-center mb-4">
+            Medios de pago
+          </h3>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm text-white/60">
+            <div className="flex items-center gap-2">
+              <Building2 className="size-4 text-primary" />
+              <div>
+                <p className="font-medium text-white/80">BCP — Cuenta Corriente</p>
+                <p className="text-xs text-white/50">5607324697001</p>
+                <p className="text-xs text-white/40">CCI: 002-560-007324697001-13</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Smartphone className="size-4 text-primary" />
+              <div>
+                <p className="font-medium text-white/80">Yape</p>
+                <p className="text-xs text-white/50">908 877 659</p>
+              </div>
+            </div>
+          </div>
+          <p className="text-center text-xs text-white/30 mt-3">BREICORP E.I.R.L.</p>
+        </div>
+
         {/* Bottom */}
-        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col items-center gap-4">
+        <div className="mt-10 pt-8 border-t border-white/10 flex flex-col items-center gap-4">
           <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} BREICORP S.A.C. Todos los derechos reservados. RUC 20601234567.
+            © {new Date().getFullYear()} BREICORP E.I.R.L. Todos los derechos reservados. RUC 20610570349. Partida Electrónica N.º 11084023.
           </p>
           <p className="text-xs text-white/40">
             Diseñado y desarrollado por{" "}

@@ -14,6 +14,13 @@ export interface NavGroup {
   sections: NavSection[];
 }
 
+/** Direct page links (not scroll-spy based) */
+export interface NavLink {
+  label: string;
+  href: string;
+  icon?: React.ComponentType<{ className?: string }>;
+}
+
 /**
  * Definición central de las 3 subpáginas + secciones scroll-spy.
  * Estructura: cada subpágina tiene su propia ruta y múltiples secciones internas.
@@ -48,6 +55,18 @@ export const navGroups: NavGroup[] = [
       { id: "faq", label: "FAQ", page: "/empresa" },
     ],
   },
+];
+
+/** Standalone page links displayed in the navbar */
+export const navLinks: NavLink[] = [
+  { label: "Módulos", href: "/modulos" },
+  { label: "Planes", href: "/planes" },
+  { label: "Rubros", href: "/rubros" },
+  { label: "App Móvil", href: "/app-movil" },
+  { label: "Clientes", href: "/clientes" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Seguridad", href: "/seguridad" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 export const allSections: NavSection[] = navGroups.flatMap((g) => g.sections);

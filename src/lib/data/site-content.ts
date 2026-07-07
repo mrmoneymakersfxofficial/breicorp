@@ -25,6 +25,11 @@ import {
   GraduationCap,
   MessageCircle,
   Layers,
+  ShoppingCart,
+  Wallet,
+  Truck,
+  Car,
+  UserCheck,
   type LucideIcon,
 } from "lucide-react";
 
@@ -82,10 +87,17 @@ export interface Module {
 
 export const modules: Module[] = [
   {
-    icon: Receipt,
-    title: "Facturación electrónica",
+    icon: LayoutDashboard,
+    title: "Dashboard empresarial",
     description:
-      "Emisión de facturas con serie automática, cálculo de IGV e ISC, envío SUNAT y descarga XML/PDF.",
+      "Vista general de tu negocio con métricas en vivo: facturación diaria, impuestos por período, top clientes y proyección mensual.",
+    tag: "Core",
+  },
+  {
+    icon: FileText,
+    title: "Crear comprobantes",
+    description:
+      "Emisión rápida de comprobantes electrónicos con serie automática, cálculo de IGV e ISC, y envío inmediato a SUNAT.",
     tag: "Core",
   },
   {
@@ -95,54 +107,96 @@ export const modules: Module[] = [
       "Boletas con cálculo automático, redondeo y envío al cliente. Integrado con POS y e-commerce.",
   },
   {
+    icon: Receipt,
+    title: "Facturas electrónicas",
+    description:
+      "Facturas con serie automática, cálculo de IGV, retenciones y detracciones. Envío SUNAT y descarga XML/PDF.",
+  },
+  {
+    icon: FolderArchive,
+    title: "Listado de comprobantes",
+    description:
+      "Historial completo de todos los comprobantes emitidos. Filtros por fecha, tipo, estado y cliente con exportación a Excel.",
+  },
+  {
     icon: FileCheck2,
-    title: "Notas de crédito y débito",
+    title: "Validación de comprobantes",
     description:
-      "Anulaciones, devoluciones y ajustes vinculados al comprobante original. Cumplimiento SUNAT garantizado.",
+      "Verifica el estado de cada comprobante ante SUNAT. Consulta CDR, constancia de recepción y validación en tiempo real.",
   },
   {
-    icon: PackageCheck,
-    title: "Guías de remisión",
+    icon: Package,
+    title: "Productos",
     description:
-      "Guías de remisión electrónicas con transporte, conductor y punto de llegada. Firma y envío automático.",
-    tag: "Logística",
-  },
-  {
-    icon: BarChart3,
-    title: "Reportes y analítica",
-    description:
-      "Dashboards de ventas, impuestos y rentabilidad. Exportación a Excel y conexión con tu contador.",
+      "Gestión completa de tu catálogo: precios, categorías, unidades, IGV afecto/inafecto y stock disponible.",
   },
   {
     icon: Users,
-    title: "Gestión de clientes",
+    title: "Clientes",
     description:
-      "CRM integrado con historial de comprobantes, saldos pendientes y recordatorios automáticos de pago.",
+      "CRM integrado con datos fiscales, tipo de documento, historial de compras, saldos pendientes y recordatorios automáticos.",
+  },
+  {
+    icon: ShoppingCart,
+    title: "Compras",
+    description:
+      "Registra compras, vincula con comprobantes de proveedor y lleva control de costos para una gestión financiera completa.",
   },
   {
     icon: Boxes,
-    title: "Inventario y stock",
+    title: "Inventario",
     description:
-      "Control de productos, lotes y series. Sincronización con almacenes, alertas de stock mínimo y costos.",
+      "Control de stock, lotes y series. Sincronización con almacenes, alertas de stock mínimo, kardex y valorización.",
   },
   {
-    icon: Building2,
-    title: "Multiempresa",
+    icon: TrendingUp,
+    title: "Ventas",
     description:
-      "Administra varios RUCs desde una sola cuenta. Facturación centralizada con reportes consolidados.",
-    tag: "Pro",
+      "Registro detallado de cada venta: medios de pago, vendedor, fecha, productos y comprobante asociado.",
   },
   {
-    icon: Code2,
-    title: "API REST",
+    icon: BarChart3,
+    title: "Reportes",
     description:
-      "Conecta tu ERP, e-commerce o app móvil con nuestra API. Webhooks en tiempo real y SDKs en 4 lenguajes.",
+      "Dashboards de ventas, impuestos y rentabilidad. Exportación a Excel, PDF y conexión con tu contador.",
   },
   {
-    icon: LayoutDashboard,
-    title: "Dashboard financiero",
+    icon: Wallet,
+    title: "Caja",
     description:
-      "Métricas en vivo: facturación diaria, impuestos por período, top clientes y proyección mensual.",
+      "Apertura y cierre de caja, control de efectivo, tarjetas y otros medios de pago. Arqueo automático al final del día.",
+  },
+  {
+    icon: PackageCheck,
+    title: "Guía remitente",
+    description:
+      "Guías de remisión electrónicas con transporte, conductor y punto de llegada. Firma y envío automático a SUNAT.",
+    tag: "Logística",
+  },
+  {
+    icon: Truck,
+    title: "Guía transportista",
+    description:
+      "Gestión de guías como transportista: MTC, conductores, vehículos y rutas. Cumplimiento normativo completo.",
+    tag: "Logística",
+  },
+  {
+    icon: Car,
+    title: "Vehículos",
+    description:
+      "Registro de flota: tarjeta de propiedad, SOAT, revisión técnica y documentación vigente para cada vehículo.",
+  },
+  {
+    icon: UserCheck,
+    title: "Conductores",
+    description:
+      "Datos de conductores: licencia, certificados y asignación a vehículos y rutas de transporte.",
+  },
+  {
+    icon: Smartphone,
+    title: "Acceso web y móvil",
+    description:
+      "Plataforma disponible en navegador y aplicativo móvil. Factura desde cualquier lugar en cualquier momento.",
   },
 ];
 
@@ -365,7 +419,7 @@ export const faqs: FaqItem[] = [
 
 export const WHATSAPP_NUMBER = "51948261382";
 export const WHATSAPP_MESSAGE =
-  "Hola BREICORP, deseo información sobre el sistema de facturación electrónica.";
+  "Hola, quiero información sobre el Sistema de Facturación Electrónica BREICORP. Mi rubro es: ________. Deseo una demo gratis.";
 
 export function whatsappLink(message: string = WHATSAPP_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
