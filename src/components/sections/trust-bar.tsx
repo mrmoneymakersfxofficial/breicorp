@@ -11,9 +11,8 @@ import {
 } from "@/components/shared/reveal";
 import { whatsappLink } from "@/lib/data/site-content";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/free-mode";
 
 const stats = [
   {
@@ -100,44 +99,47 @@ export function TrustBar() {
           ))}
         </motion.div>
 
-        {/* Client Logos — Swiper Carousel */}
+        {/* Client Logos — Swiper Carousel (full-width, edge to edge) */}
         <Reveal className="mb-10 lg:mb-14">
           <p className="text-center text-xs font-medium text-foreground/40 mb-6 uppercase tracking-wider">
             Desliza para ver más clientes
           </p>
-          <Swiper
-            modules={[Autoplay, FreeMode]}
-            spaceBetween={16}
-            slidesPerView="auto"
-            speed={4000}
-            loop
-            freeMode
-            allowTouchMove
-            grabCursor
-            autoplay={{
-              delay: 0,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            className="clients-swiper !overflow-visible"
-          >
-            {clientLogos.map((logo, i) => (
-              <SwiperSlide key={i} className="!w-auto">
-                <div className="flex items-center justify-center h-20 sm:h-24 px-5 sm:px-7 bg-card border border-black/8 dark:border-white/8 rounded-xl hover:shadow-float hover:border-brand-orange/20 transition-all duration-300 cursor-grab active:cursor-grabbing">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    width={160}
-                    height={64}
-                    className="max-h-14 sm:max-h-16 w-auto object-contain select-none pointer-events-none"
-                    loading="lazy"
-                    draggable={false}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {/* Break out of container-page padding for full-bleed carousel */}
+          <div className="relative w-[calc(100vw-16px)] sm:w-[calc(100vw-32px)] lg:w-[calc(100vw-80px)] left-1/2 -translate-x-1/2">
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={16}
+              slidesPerView="auto"
+              speed={6000}
+              loop
+              loopAdditionalSlides={10}
+              allowTouchMove
+              grabCursor
+              autoplay={{
+                delay: 1,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              className="clients-swiper"
+            >
+              {clientLogos.map((logo, i) => (
+                <SwiperSlide key={i} style={{ width: "auto" }}>
+                  <div className="flex items-center justify-center h-20 sm:h-24 px-5 sm:px-7 bg-card border border-black/8 dark:border-white/8 rounded-xl hover:shadow-float hover:border-brand-orange/20 transition-all duration-300 cursor-grab active:cursor-grabbing">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={160}
+                      height={64}
+                      className="max-h-14 sm:max-h-16 w-auto object-contain select-none pointer-events-none"
+                      loading="lazy"
+                      draggable={false}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </Reveal>
 
         {/* Bottom CTA */}
