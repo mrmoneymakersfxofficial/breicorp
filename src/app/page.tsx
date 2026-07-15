@@ -1,5 +1,9 @@
 import { AppShell } from "@/components/layout/app-shell";
 import { Hero } from "@/components/sections/hero";
+import { CompanyPresentation } from "@/components/sections/company-presentation";
+import { Pricing } from "@/components/sections/pricing";
+import { MissionVision } from "@/components/sections/mission-vision";
+import { WhyChooseBreicorp } from "@/components/sections/why-choose-breicorp";
 import { TrustBar } from "@/components/sections/trust-bar";
 import { Benefits } from "@/components/sections/benefits";
 import { Modules } from "@/components/sections/modules";
@@ -77,6 +81,10 @@ export default function HomePage() {
       <SectionBlend glow>
         <Hero />
       </SectionBlend>
+      <CompanyPresentation />
+      <Pricing />
+      <MissionVision />
+      <WhyChooseBreicorp />
       <TrustBar />
       <Benefits />
       <Modules />
