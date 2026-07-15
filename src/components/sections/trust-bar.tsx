@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Building2, MapPin, ShieldCheck, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +10,10 @@ import {
   Counter,
 } from "@/components/shared/reveal";
 import { whatsappLink } from "@/lib/data/site-content";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, FreeMode } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/free-mode";
 
 const stats = [
   {
@@ -40,21 +43,13 @@ const stats = [
   },
 ];
 
-const clients = [
-  "Botica Peruana",
-  "Hensey SAC",
-  "Corp. Michel",
-  "ROF Abogados",
-  "Grupo Corp OPG SAC",
-  "Farma Medicmer",
-  "C&L Farma",
-  "Deseret Agronomía",
-  "Paul TunQui EIRL",
-];
+/* All 45 client logos extracted from the Word document */
+const clientLogos = Array.from({ length: 45 }, (_, i) => ({
+  src: `/clients/image${i + 1}.webp`,
+  alt: `Cliente ${i + 1} de BREICORP`,
+}));
 
 export function TrustBar() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
   return (
     <section id="clientes" className="relative py-16 lg:py-24 bg-brand-gray overflow-hidden">
       {/* Subtle grid pattern */}
@@ -105,32 +100,44 @@ export function TrustBar() {
           ))}
         </motion.div>
 
-        {/* Client Logos Carousel */}
+        {/* Client Logos — Swiper Carousel */}
         <Reveal className="mb-10 lg:mb-14">
-          <p className="text-center text-xs font-medium text-foreground/40 mb-6">
+          <p className="text-center text-xs font-medium text-foreground/40 mb-6 uppercase tracking-wider">
             Desliza para ver más clientes
           </p>
-          <div className="relative">
-            {/* Fade edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-brand-gray to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-brand-gray to-transparent z-10 pointer-events-none" />
-
-            <div
-              ref={scrollRef}
-              className="flex gap-4 overflow-x-auto scrollbar-hide py-2 px-2 snap-x snap-mandatory"
-            >
-              {clients.map((name) => (
-                <div
-                  key={name}
-                  className="flex-shrink-0 snap-start bg-card border border-black/8 dark:border-white/8 rounded-xl px-6 py-4 flex items-center justify-center min-w-[180px] sm:min-w-[200px] hover:shadow-float hover:border-brand-orange/20 transition-all duration-300"
-                >
-                  <span className="font-display text-sm sm:text-base font-bold text-foreground/50 whitespace-nowrap">
-                    {name}
-                  </span>
+          <Swiper
+            modules={[Autoplay, FreeMode]}
+            spaceBetween={16}
+            slidesPerView="auto"
+            speed={4000}
+            loop
+            freeMode
+            allowTouchMove
+            grabCursor
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            className="clients-swiper !overflow-visible"
+          >
+            {clientLogos.map((logo, i) => (
+              <SwiperSlide key={i} className="!w-auto">
+                <div className="flex items-center justify-center h-20 sm:h-24 px-5 sm:px-7 bg-card border border-black/8 dark:border-white/8 rounded-xl hover:shadow-float hover:border-brand-orange/20 transition-all duration-300 cursor-grab active:cursor-grabbing">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={160}
+                    height={64}
+                    className="max-h-14 sm:max-h-16 w-auto object-contain select-none pointer-events-none"
+                    loading="lazy"
+                    draggable={false}
+                  />
                 </div>
-              ))}
-            </div>
-          </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </Reveal>
 
         {/* Bottom CTA */}
