@@ -104,11 +104,11 @@ export function Navbar() {
           {/* Logo — official BREICORP brand logo */}
           <Link href="/" className="flex items-center shrink-0 pl-1 sm:pl-2" aria-label="BREICORP inicio">
             <Image
-              src="/logo/breicorp-logo-nav.png"
+              src="/logo/breicorp-logo-nav.webp"
               alt="BREICORP"
-              width={40}
-              height={40}
-              className="h-9 w-auto sm:h-10 object-contain"
+              width={180}
+              height={50}
+              className="h-10 w-auto sm:h-12 object-contain"
               priority
             />
           </Link>
@@ -317,11 +317,11 @@ export function Navbar() {
           >
             <div className="flex items-center justify-between h-16 px-4 sm:px-6 border-b border-border shrink-0">
               <Image
-                src="/logo/breicorp-logo-nav.png"
+                src="/logo/breicorp-logo-nav.webp"
                 alt="BREICORP"
-                width={40}
-                height={40}
-                className="h-9 w-auto object-contain"
+                width={180}
+                height={50}
+                className="h-10 w-auto object-contain"
               />
               <button
                 type="button"

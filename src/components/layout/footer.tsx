@@ -39,7 +39,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-4 space-y-6">
             <Image
-              src="/logo/breicorp-logo-nav.png"
+              src="/logo/breicorp-logo-nav.webp"
               alt="BREICORP"
               width={44}
               height={44}
