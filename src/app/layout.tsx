@@ -54,9 +54,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: [{ url: "/logo/breicorp-logo-nav.webp", type: "image/webp" }],
-    shortcut: "/logo/breicorp-logo-nav.webp",
-    apple: "/logo/breicorp-logo-nav.webp",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "BREICORP — Facturación Electrónica Empresarial para Perú",

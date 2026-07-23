@@ -6,7 +6,7 @@ import { Reveal, staggerContainer, staggerItem } from "@/components/shared/revea
 
 const companyCards = [
   { label: "RAZÓN SOCIAL", value: "BREICORP E.I.R.L.", icon: FileText },
-  { label: "RUC", value: "20610570349", icon: Hash },
+  { label: "RUC", value: "20615859312", icon: Hash },
   { label: "PARTIDA ELECTRÓNICA", value: "N.° 11084023", icon: FileText },
   { label: "UBICACIÓN", value: "Av. Tito Jaime 642, Tingo María — Huánuco", icon: MapPin },
   { label: "FUNDACIÓN", value: "2017", icon: Calendar },
