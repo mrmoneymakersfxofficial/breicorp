@@ -27,7 +27,7 @@ const jsonLd = {
       knowsLanguage: "es-PE",
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+51-948-261-382",
+        telephone: "+51-908-877-659",
         contactType: "sales",
         areaServed: "PE",
         availableLanguage: "Spanish",

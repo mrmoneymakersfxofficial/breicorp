@@ -108,14 +108,14 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2.5 text-white/70">
                 <Phone className="size-4 mt-0.5 text-primary shrink-0" />
-                <a href="tel:+51948261382" className="hover:text-white transition-colors">
-                  +51 948 261 382
+                <a href="tel:+51908877659" className="hover:text-white transition-colors">
+                  +51 908 877 659
                 </a>
               </li>
               <li className="flex items-start gap-2.5 text-white/70">
                 <Mail className="size-4 mt-0.5 text-primary shrink-0" />
-                <a href="mailto:hola@breicorp.com" className="hover:text-white transition-colors">
-                  hola@breicorp.com
+                <a href="mailto:breicorp@gmail.com" className="hover:text-white transition-colors">
+                  breicorp@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2.5 text-white/70">
@@ -167,7 +167,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-10 pt-8 border-t border-white/10 flex flex-col items-center gap-4">
           <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} BREICORP E.I.R.L. Todos los derechos reservados. RUC 20610570349. Partida Electrónica N.º 11084023.
+            © {new Date().getFullYear()} BREICORP E.I.R.L. Todos los derechos reservados. RUC 20615859312. Nacida en la ciudad de Tingo María.
           </p>
           <p className="text-xs text-white/40">
             Diseñado y desarrollado por{" "}

@@ -138,13 +138,13 @@ export function ContactInfo() {
               WhatsApp directo
             </p>
             <p className="text-sm text-foreground/60 mt-0.5">
-              +51 948 261 382
+              +51 908 877 659
             </p>
           </div>
         </a>
 
         {/* Phone */}
-        <a href="tel:+51948261382" className="flex items-start gap-4 group">
+        <a href="tel:+51908877659" className="flex items-start gap-4 group">
           <div className="inline-flex items-center justify-center size-10 bg-brand-orange/10 text-brand-orange rounded-lg shrink-0">
             <Phone className="size-5" />
           </div>
@@ -153,14 +153,14 @@ export function ContactInfo() {
               Teléfono
             </p>
             <p className="text-sm text-foreground/60 mt-0.5">
-              +51 948 261 382
+              +51 908 877 659
             </p>
           </div>
         </a>
 
         {/* Email */}
         <a
-          href="mailto:hola@breicorp.com"
+          href="mailto:breicorp@gmail.com"
           className="flex items-start gap-4 group"
         >
           <div className="inline-flex items-center justify-center size-10 bg-sky-500/10 text-sky-600 dark:text-sky-400 rounded-lg shrink-0">
@@ -171,7 +171,7 @@ export function ContactInfo() {
               Email
             </p>
             <p className="text-sm text-foreground/60 mt-0.5">
-              hola@breicorp.com
+              breicorp@gmail.com
             </p>
           </div>
         </a>
@@ -213,7 +213,7 @@ export function ContactInfo() {
           <p className="flex items-center gap-2">
             <FileCheck2 className="size-3.5 shrink-0" />
             <span>
-              <strong className="text-foreground/80">RUC:</strong> 20610570349
+              <strong className="text-foreground/80">RUC:</strong> 20615859312
             </span>
           </p>
           <p className="flex items-center gap-2">

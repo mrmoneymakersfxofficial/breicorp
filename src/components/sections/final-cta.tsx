@@ -91,7 +91,7 @@ export function FinalCta() {
               >
                 <span className="inline-flex items-center gap-1.5">
                   <Phone className="size-3.5 text-brand-orange" />
-                  +51 948 261 382
+                  +51 908 877 659
                 </span>
                 <span>Sin contratos forzados</span>
                 <span>Cancela cuando quieras</span>

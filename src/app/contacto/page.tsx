@@ -8,12 +8,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contacto — Escríbenos | BREICORP",
   description:
-    "Contáctanos por WhatsApp, teléfono, email o visita nuestra oficina en Tingo María, Huánuco. RUC 20610570349. Respuesta en menos de 15 minutos.",
+    "Contáctanos por WhatsApp, teléfono, email o visita nuestra oficina en Tingo María, Huánuco. RUC 20615859312. Respuesta en menos de 15 minutos.",
   alternates: { canonical: "/contacto" },
   openGraph: {
     title: "Contacto BREICORP — WhatsApp, teléfono, email",
     description:
-      "Estamos en Av. Tito Jaime 642, Tingo María. Horario: Lun–Sáb 8:00–20:00. WhatsApp +51 948 261 382.",
+      "Estamos en Av. Tito Jaime 642, Tingo María. Horario: Lun–Sáb 8:00–20:00. WhatsApp +51 908 877 659.",
     url: "/contacto",
   },
 };

@@ -417,7 +417,7 @@ export const faqs: FaqItem[] = [
   },
 ];
 
-export const WHATSAPP_NUMBER = "51948261382";
+export const WHATSAPP_NUMBER = "51908877659";
 export const WHATSAPP_MESSAGE =
   "Hola, quiero información sobre el Sistema de Facturación Electrónica BREICORP. Mi rubro es: ________. Deseo una demo gratis.";
 
